@@ -10,7 +10,7 @@ const NFTList = () => {
         {dummydata.map((el) => {
                 return (<Stack key={el.id} alignItems="center" textAlign="center"
                 sx={{width: 450, border: 1, margin: 3, padding: 2, 
-                        borderRadius: 3, boxShadow: "1px 1.5px gray"}}>
+                        borderRadius: 3, boxShadow: "1px 1.5px gray", '&:hover': {"boxShadow": "2px 2px 2px 2px gray", "transform": "translate(-1px, -1px)"}}}>
                     <Link to={`/${el.id}`} style={{textDecoration: "none", color: "black"}}>
                         <NFTListShow data={el} />
                     </Link>
