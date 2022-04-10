@@ -6,8 +6,8 @@ const NFTListShow = ({data}) => {
     return (
     <Box>
         <Stack>
-                <p>{data.name}</p>
-                <img style={{"width": 400, "height": 400}} src={data.image} alt={data.name} />
+            <p>{data.name}</p>
+            <img style={{"width": 400, "height": 400, borderRadius: 15}} src={data.image} alt={data.name} />
         </Stack>
     </Box>
 
