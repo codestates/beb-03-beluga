@@ -21,16 +21,16 @@ const NFT = () => {
                 <span>이미지 클릭시 원본 이미지를 볼 수 있습니다.</span>
             </Stack>
             <Stack alignItems="center" textAlign="center" sx={{ width:"100%", border: 1, margin: 5, padding: 3, borderRadius: 5}}>
-                <Stack flexDirection="row" sx={{margin: 3}}>
-                    <Input placeholder="토큰을 전송할 주소" sx={{marginRight: 3, width: 500}}/>
-                    <Button variant="contained" sx={{width:110}}>Send</Button>
-                </Stack>
                 <Stack sx={{padding: 1.5, borderRadius: 3, fontSize: 45}}>
                     NFT name : {data.name}
                 </Stack>
                 <Stack sx={{border: 1, padding: 4.5, marginTop:5, borderRadius: 3}}>
                     <Stack sx={{borderBottom: 1, width:"fit-content", marginRight:"auto", marginLeft:"auto", padding: 0.5}}>거래 히스토리</Stack>
                     {data.history.map((el, idx) => <p key={idx} style={{color: "purple"}}>{`${idx+ 1}번째 소유자 : ${el}`}</p>)}
+                </Stack>
+                <Stack flexDirection="row" sx={{margin: 3}}>
+                    <Input placeholder="이 토큰을 전송할 주소" sx={{marginRight: 3, width: 500}}/>
+                    <Button variant="contained" sx={{width:110}}>Send</Button>
                 </Stack>
                 <Stack sx={{padding: 3, margin: 3}}>
                     {data.description}
