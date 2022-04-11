@@ -1,6 +1,6 @@
 import dummydata from "../dummydata/dummydata"
 import { Stack } from "@mui/material";
-import NFTListShow from "./NFTListShow";
+import NFTListShow from "./component/NFTListShow";
 import { Link } from "react-router-dom";
 
 const NFTList = () => {
