@@ -39,7 +39,7 @@ function App() {
       <Stack>
         <Header isLogin={isLogin} connectWallet={connectWallet} />
         <Stack
-          sx={{ height: "85vh", marginTop: 4, marginBottom: 2, border: 1 }}
+          sx={{ marginTop: 4, marginBottom: 2, border: 1 }}
         >
           <Route exact path="/">
             <NFTList />

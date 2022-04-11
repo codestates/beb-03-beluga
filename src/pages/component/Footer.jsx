@@ -51,7 +51,6 @@ export default function Footer() {
           </Stack>
           <Stack justifyContent="space-around" sx={{ margin: 1, width: "60%" }}>
             <Stack
-              alginItems="center"
               sx={{
                 height: 15,
                 marginLeft: 3,
