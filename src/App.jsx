@@ -3,8 +3,9 @@ import Header from "./pages/component/Header";
 import Footer from "./pages/component/Footer";
 import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import AllNFTs from "./pages/AllNFTs";
+import NFTList from "./pages/NFTList";
 import Web3 from "web3";
+import NFT from './pages/component/NFT';
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -40,7 +41,10 @@ function App() {
           sx={{ height: "85vh", marginTop: 4, marginBottom: 2, border: 1 }}
         >
           <Route exact path="/">
-            <AllNFTs />
+            <NFTList />
+          </Route>
+          <Route path="/:id">
+                    <NFT/>
           </Route>
           <Route path="/create">생성 컴포넌트 넣기</Route>
           <Route path="/profile">프로필 컴포넌트</Route>
