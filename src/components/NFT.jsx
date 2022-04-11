@@ -1,6 +1,5 @@
 import { Stack } from "@mui/material";
-import Button from '@mui/material/Button';
-import Input from '@mui/material/Input';
+import { Button, Input } from '@mui/material';
 import dummydata from "../dummydata/dummydata";
 import { useParams } from "react-router-dom";
 import { useState } from 'react';
