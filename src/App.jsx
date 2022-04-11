@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import NFTList from "./pages/NFTList";
 import Web3 from "web3";
-import NFT from './pages/component/NFT';
+import NFT from "./pages/component/NFT";
+import Create from "./pages/Create";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -43,10 +44,12 @@ function App() {
           <Route exact path="/">
             <NFTList />
           </Route>
-          <Route path="/:id">
-                    <NFT/>
+          <Route path="/create">
+            <Create></Create>
           </Route>
-          <Route path="/create">생성 컴포넌트 넣기</Route>
+          <Route path="/list/:id">
+            <NFT />
+          </Route>
           <Route path="/profile">프로필 컴포넌트</Route>
         </Stack>
         <Footer />
