@@ -34,16 +34,24 @@ function App() {
 
   return (
     <Switch>
-      <Stack>
+      <Stack sx={{ height: "100vh" }}>
         <Header isLogin={isLogin} connectWallet={connectWallet} />
-        <Stack
-          sx={{ height: "85vh", marginTop: 4, marginBottom: 2, border: 1 }}
-        >
-          <Route exact path="/">
-            <AllNFTs />
-          </Route>
-          <Route path="/create">생성 컴포넌트 넣기</Route>
-          <Route path="/profile">프로필 컴포넌트</Route>
+        <Stack justifyContent="center" alignItems="center">
+          <Stack
+            sx={{
+              height: "90vh",
+              width: "80%",
+              marginTop: 4,
+              marginBottom: 2,
+              border: 1,
+            }}
+          >
+            <Route exact path="/">
+              <AllNFTs />
+            </Route>
+            <Route path="/create">생성 컴포넌트 넣기</Route>
+            <Route path="/profile">프로필 컴포넌트</Route>
+          </Stack>
         </Stack>
         <Footer />
       </Stack>

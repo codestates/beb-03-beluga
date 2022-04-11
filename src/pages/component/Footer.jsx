@@ -7,11 +7,11 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 
 export default function Footer() {
   return (
-    <Stack sx={{ heigth: 100, width: 1 }}>
+    <Stack>
       <Stack
         alignItems="center"
         justifyContent="center"
-        sx={{ height: 60, width: 1, background: "#1C69DA" }}
+        sx={{ height: 60, background: "#1C69DA" }}
       >
         <Stack
           direction="row"
@@ -32,11 +32,12 @@ export default function Footer() {
           <Button sx={{ color: "white" }}>BLOCKCHAIN</Button>
         </Stack>
       </Stack>
+
       <Stack
         direction="row"
         alignItems="center"
         justifyContent="space-around"
-        sx={{ height: 100, width: 1, background: "#1552A8" }}
+        sx={{ height: 100, background: "#1552A8" }}
       >
         <Stack
           direction="row"
@@ -110,11 +111,11 @@ export default function Footer() {
           </Stack>
         </Stack>
       </Stack>
+
       <Stack
         justifyContent="center"
         sx={{
           height: 30,
-          width: 1,
           background: "#1552A8",
         }}
       >
