@@ -24,7 +24,13 @@ const NFTList = ({account = null, web3, caver}) => {
             erc721addr
         );
         const totalSupply = await tokenContract.methods.totalSupply().call();
-        setLastPage(parseInt(totalSupply / 10 + 1));
+
+        if(totalSupply % 10 === 0){
+          setLastPage(parseInt(totalSupply / 10));
+        } else{
+          setLastPage(parseInt(totalSupply / 10) + 1);
+        }
+
         if(account){
           // 주소값으로 필터링
           let arr = [];
@@ -35,14 +41,13 @@ const NFTList = ({account = null, web3, caver}) => {
               let tokenOwner = await tokenContract.methods
                   .ownerOf(tokenId)
                   .call();
-              if (String(tokenOwner).toLowerCase() === account) {
-                  let tokenURI = await tokenContract.methods
-                      .tokenURI(tokenId)
-                      .call();
-                  const tokenMetaData = fetchMetaData(tokenURI);
-                  tokenMetaData
-                    .then((el) => el.json())
-                    .then(ele => getNFTData.push({ ...ele, tokenId }));
+              if (String(tokenOwner).toLowerCase() === account.toLowerCase()) {
+                let tokenURI = await tokenContract.methods
+                    .tokenURI(tokenId)
+                    .call();
+                const tokenMetaData = await fetchMetaData(tokenURI);
+                const tokenMetaDataJSON = await tokenMetaData.json();
+                getNFTData.push({ ...tokenMetaDataJSON, tokenId })
               }
           }
         } else {
@@ -55,10 +60,9 @@ const NFTList = ({account = null, web3, caver}) => {
               let tokenURI = await tokenContract.methods
                   .tokenURI(tokenId)
                   .call();
-              const tokenMetaData = fetchMetaData(tokenURI);
-              tokenMetaData
-                .then((el) => el.json())
-                .then(ele => getNFTData.push({ ...ele, tokenId }));
+              const tokenMetaData = await fetchMetaData(tokenURI);
+              const tokenMetaDataJSON = await tokenMetaData.json();
+              getNFTData.push({ ...tokenMetaDataJSON, tokenId })
           }
         }
       }
