@@ -7,7 +7,15 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 
 export default function Footer() {
   return (
-    <Stack>
+    <Stack
+      sx={{
+        position: "absolute",
+        left: 0,
+        bottom: 0,
+        height: 190,
+        width: "100%",
+      }}
+    >
       <Stack
         alignItems="center"
         justifyContent="center"
@@ -34,80 +42,91 @@ export default function Footer() {
       </Stack>
 
       <Stack
-        direction="row"
         alignItems="center"
-        justifyContent="space-around"
-        sx={{ height: 100, background: "#1552A8" }}
+        justifyContent="center"
+        sx={{ height: "80%", background: "#1552A8" }}
       >
         <Stack
           direction="row"
-          justifyContent="center"
-          sx={{ height: 80, width: "60%" }}
+          alignItems="center"
+          sx={{ height: "90%", width: "80%" }}
         >
-          <Stack sx={{ margin: 1, width: 60 }}>
-            <img
-              src="/Logo(beluga).png
-        "
-            />
-          </Stack>
-          <Stack justifyContent="space-around" sx={{ margin: 1, width: "60%" }}>
-            <Stack
-              alginItems="center"
-              sx={{
-                height: 15,
-                marginLeft: 3,
-                marginTop: 1,
-                fontSize: 20,
-                fontWeight: "bolder",
-                color: "white",
-              }}
-            >
-              BelugaSea
-            </Stack>
-            <Stack
-              sx={{
-                height: 30,
-                alignItems: "start",
-                marginRight: 1,
-                marginTop: 2,
-                color: "white",
-              }}
-            >
-              Clone Opensea project
-            </Stack>
-          </Stack>
-        </Stack>
-        <Stack justifyContent="space-around" sx={{ height: 80, width: "50%" }}>
-          <Stack
-            sx={{
-              marginLeft: 1,
-              color: "white",
-              fontSize: 20,
-              fontWeight: "bolder",
-            }}
-          >
-            Join the community
-          </Stack>
           <Stack
             direction="row"
-            justifyContent="space-around"
-            sx={{ height: 40 }}
+            justifyContent="center"
+            sx={{ height: "70%", flexGrow: 2 }}
           >
-            <Button sx={{ background: "#317cec" }}>
-              <TwitterIcon sx={{ color: "white" }} />
-            </Button>
-            <Button sx={{ background: "#317cec" }}>
-              <FacebookIcon sx={{ color: "white" }} />
-            </Button>
-            <Button sx={{ background: "#317cec" }}>
-              <InstagramIcon sx={{ color: "white" }} />
-            </Button>
-            <Button sx={{ background: "#317cec" }}>
-              <YouTubeIcon sx={{ color: "white" }} />
-            </Button>
-            <Button sx={{ background: "#317cec" }}>
-              <GitHubIcon sx={{ color: "white" }} />
-            </Button>
+            <Stack sx={{ margin: 1, width: 60 }}>
+              <img
+                src="/Logo(beluga).png
+        "
+              />
+            </Stack>
+            <Stack
+              justifyContent="space-around"
+              sx={{ margin: 1, width: "60%" }}
+            >
+              <Stack
+                alignItems="start"
+                sx={{
+                  height: "30%",
+                  marginLeft: 3,
+                  marginTop: 1,
+                  fontSize: 20,
+                  fontWeight: "bolder",
+                  color: "white",
+                }}
+              >
+                BelugaSea
+              </Stack>
+              <Stack
+                sx={{
+                  height: "30%",
+                  alignItems: "start",
+                  marginLeft: 3,
+                  marginTop: 2,
+                  color: "white",
+                }}
+              >
+                Clone Opensea project
+              </Stack>
+            </Stack>
+          </Stack>
+          <Stack
+            justifyContent="space-around"
+            sx={{ height: "70%", flexGrow: 1 }}
+          >
+            <Stack
+              sx={{
+                marginLeft: 1,
+                color: "white",
+                fontSize: 20,
+                fontWeight: "bolder",
+              }}
+            >
+              Join the community
+            </Stack>
+            <Stack
+              direction="row"
+              justifyContent="space-around"
+              sx={{ height: "50%", width: "100%" }}
+            >
+              <Button sx={{ width: "13%", background: "#317cec" }}>
+                <TwitterIcon sx={{ color: "white" }} />
+              </Button>
+              <Button sx={{ width: "13%", background: "#317cec" }}>
+                <FacebookIcon sx={{ color: "white" }} />
+              </Button>
+              <Button sx={{ width: "13%", background: "#317cec" }}>
+                <InstagramIcon sx={{ color: "white" }} />
+              </Button>
+              <Button sx={{ width: "13%", background: "#317cec" }}>
+                <YouTubeIcon sx={{ color: "white" }} />
+              </Button>
+              <Button sx={{ width: "13%", background: "#317cec" }}>
+                <GitHubIcon sx={{ color: "white" }} />
+              </Button>
+            </Stack>
           </Stack>
         </Stack>
       </Stack>
