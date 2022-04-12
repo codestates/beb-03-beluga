@@ -68,7 +68,7 @@ function Create() {
       const added = await client.add(fileBlob);
       const url = `https://ipfs.infura.io/ipfs/${added.path}`;
       setImgUrl(url);
-      console.log(url);
+      // console.log(url);
       const metaData = {
         name: nftName,
         description: description,
@@ -81,7 +81,7 @@ function Create() {
           },
         ],
       };
-      console.log(metaData);
+      // console.log(metaData);
     } catch (error) {
       console.log("Error uploading file: ", error);
     }
