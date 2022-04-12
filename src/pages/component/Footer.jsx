@@ -51,52 +51,6 @@ export default function Footer() {
           alignItems="center"
           sx={{ height: "90%", width: "80%" }}
         >
-<<<<<<< HEAD
-          <Stack sx={{ margin: 1, width: 60 }}>
-            <img
-              src="/Logo(beluga).png
-        "
-            />
-          </Stack>
-          <Stack justifyContent="space-around" sx={{ margin: 1, width: "60%" }}>
-            <Stack
-              sx={{
-                height: 15,
-                marginLeft: 3,
-                marginTop: 1,
-                fontSize: 20,
-                fontWeight: "bolder",
-                color: "white",
-              }}
-            >
-              BelugaSea
-            </Stack>
-            <Stack
-              sx={{
-                height: 30,
-                alignItems: "start",
-                marginRight: 1,
-                marginTop: 2,
-                color: "white",
-              }}
-            >
-              Clone Opensea project
-            </Stack>
-          </Stack>
-        </Stack>
-        <Stack justifyContent="space-around" sx={{ height: 80, width: "50%" }}>
-          <Stack
-            sx={{
-              marginLeft: 1,
-              color: "white",
-              fontSize: 20,
-              fontWeight: "bolder",
-            }}
-          >
-            Join the community
-          </Stack>
-=======
->>>>>>> 6abd74a254e232f8223d2adb1d65bc6b6011871d
           <Stack
             direction="row"
             justifyContent="center"
