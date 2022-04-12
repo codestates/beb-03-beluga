@@ -48,7 +48,6 @@ function App() {
       const name = await tokenContract.methods.name().call();
       const symbol = await tokenContract.methods.symbol().call();
       const totalSupply = await tokenContract.methods.totalSupply().call();
-      console.log(name);
     }
   }, [web3]);
 
@@ -100,16 +99,19 @@ function App() {
             }}
           >
             <Route exact path="/">
-              <NFTList account={account} web3={web3} caver={caver} />
+              <NFTList web3={web3} caver={caver} />
             </Route>
             <Route path="/create">
               <Create account={account} web3={web3} caver={caver} />
             </Route>
             <Route path="/list/:id">
-              <NFT />
+              <NFT web3={web3} account={account}/>
             </Route>
             <Route path="/profile">
               <Profile />
+            </Route>
+            <Route path="/profile/list">
+              <NFTList account={account} web3={web3} caver={caver} />
             </Route>
           </Stack>
           <Footer />
