@@ -1,6 +1,7 @@
 import { Stack } from "@mui/material";
 import Header from "./pages/component/Header";
 import Footer from "./pages/component/Footer";
+import Profile from "./pages/Profile";
 import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import NFTList from "./pages/NFTList";
@@ -50,7 +51,7 @@ function App() {
           <Route path="/list/:id">
             <NFT />
           </Route>
-          <Route path="/profile">프로필 컴포넌트</Route>
+          <Route path="/profile"><Profile/></Route>
         </Stack>
         <Footer />
       </Stack>
