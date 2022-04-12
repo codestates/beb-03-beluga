@@ -15,7 +15,7 @@ const NFT = () => {
             <img src={data.image} alt={data.name} onClick={() => setOnModalImg(false)} 
                 style={{position: "absolute",top:0, left:0, right:0, bottom:0, margin:"auto" ,zIndex: "1", border: "1px solid black"}}/> 
             : null}
-        <Stack flexDirection="row" sx={{margin: 3}}>
+        <Stack flexDirection="row" sx={{margin: 3, opacity: onModalImg ? 0.5 : 1}}>
             <Stack textAlign="center" sx={{margin: 3}}>
                 <img src={data.image} style={{width: 600, height: 600, margin: 5}} alt={data.name} onClick={() => setOnModalImg(true)} />
                 <span>이미지 클릭시 원본 이미지를 볼 수 있습니다.</span>

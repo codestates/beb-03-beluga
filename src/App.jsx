@@ -65,11 +65,15 @@ function App() {
     <>
       <Switch>
         <Stack
+<<<<<<< HEAD
+          sx={{ marginTop: 4, marginBottom: 2, border: 1 }}
+=======
           sx={{
             minHeight: "100vh",
             width: "100%",
             position: "relative",
           }}
+>>>>>>> 6abd74a254e232f8223d2adb1d65bc6b6011871d
         >
           <Header
             isLogin={isLogin}
