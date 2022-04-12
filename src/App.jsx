@@ -38,9 +38,7 @@ function App() {
     <Switch>
       <Stack>
         <Header isLogin={isLogin} connectWallet={connectWallet} />
-        <Stack
-          sx={{ height: "85vh", marginTop: 4, marginBottom: 2, border: 1 }}
-        >
+        <Stack sx={{ marginTop: 4, marginBottom: 2, border: 1 }}>
           <Route exact path="/">
             <NFTList />
           </Route>
