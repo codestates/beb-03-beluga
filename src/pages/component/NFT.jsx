@@ -12,7 +12,7 @@ const NFT = ({web3, account}) => {
     const [data, setData] = useState({});
     const [onModalImg, setOnModalImg] = useState(false);
     const [to, setTo] = useState("");
-
+    
     useEffect(() => {
         async function fetchData() {
             const tokenContract = await new web3.eth.Contract(
@@ -42,6 +42,7 @@ const NFT = ({web3, account}) => {
                 from: account,
             }
         );
+
         try {
             tokenContractSend.methods
             .transferFrom(account, to, tokenId)
