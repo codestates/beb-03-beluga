@@ -8,21 +8,15 @@ import NFTList from "./pages/NFTList";
 import Web3 from "web3";
 import NFT from "./pages/component/NFT";
 import Create from "./pages/Create";
+import Caver from "caver-js";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [web3, setWeb3] = useState();
+  const [caver, setCaver] = useState();
   const [account, setAccount] = useState("");
 
-  const connectWallet = async () => {
-    let accounts = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
-
-    setAccount(accounts[0]);
-    setIsLogin(true);
-  };
-
+  //web3 객체 생성
   useEffect(() => {
     //window.ethereum이 있다면
     if (typeof window.ethereum !== "undefined") {
@@ -35,27 +29,80 @@ function App() {
     }
   }, []);
 
+  //caber 객체 생성
+  useEffect(() => {
+    if (typeof window.klaytn !== "undefined") {
+      try {
+        const newCaver = new Caver(window.klaytn);
+        setCaver(newCaver);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }, []);
+
+  const connectMetaMask = async () => {
+    let accounts = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+
+    setAccount(accounts[0]);
+    setIsLogin(true);
+  };
+
+  const connectKaikas = async () => {
+    let accounts = await window.klaytn.enable();
+
+    setAccount(accounts[0]);
+    setIsLogin(true);
+  };
+
+  const handleLogOut = () => {
+    setIsLogin(false);
+    setAccount("");
+  };
+
   return (
-    <Switch>
-      <Stack>
-        <Header isLogin={isLogin} connectWallet={connectWallet} />
+    <>
+      <Switch>
         <Stack
-          sx={{ height: "85vh", marginTop: 4, marginBottom: 2, border: 1 }}
+          sx={{
+            minHeight: "100vh",
+            width: "100%",
+            position: "relative",
+          }}
         >
-          <Route exact path="/">
-            <NFTList />
-          </Route>
-          <Route path="/create">
-            <Create></Create>
-          </Route>
-          <Route path="/list/:id">
-            <NFT />
-          </Route>
-          <Route path="/profile"><Profile/></Route>
+          <Header
+            isLogin={isLogin}
+            handleLogOut={handleLogOut}
+            connectMetaMask={connectMetaMask}
+            connectKaikas={connectKaikas}
+          />
+          <Stack
+            alignItems="center"
+            sx={{
+              height: "auto",
+              minHeight: "80%",
+              width: "100%",
+              marginTop: 4,
+              marginBottom: 30,
+            }}
+          >
+            <Route exact path="/">
+              <NFTList />
+            </Route>
+            <Route path="/create">
+              <Create />
+            </Route>
+            <Route path="/list/:id">
+              <NFT />
+            </Route>
+            <Route path="/profile"><PROFILE/></Route>
+          </Stack>
+          <Footer />
         </Stack>
-        <Footer />
-      </Stack>
-    </Switch>
+      </Switch>
+    </>
   );
 }
 

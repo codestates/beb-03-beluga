@@ -5,40 +5,80 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
-export default function Header({ isLogin, connectWallet }) {
+export default function Header({
+  isLogin,
+  handleLogOut,
+  connectMetaMask,
+  connectKaikas,
+}) {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Stack
       direction="row"
-      sx={{ height: 100, borderBottom: 3.5, borderColor: "gray" }}
+      justifyContent="space-around"
+      sx={{
+        flexWrap: "wrap",
+        height: "auto",
+        marginTop: 3,
+        marginLeft: 2.5,
+        marginRight: 2.5,
+        paddingBottom: 1,
+        borderBottom: 3.5,
+        borderColor: "gray",
+      }}
     >
       <Stack
         direction="row"
         alignItems="center"
-        justifyContent="left"
-        sx={{ flexGrow: 0.7, marginLeft: 2 }}
+        sx={{ flexWrap: "wrap", flexGrow: 0.6, marginLeft: 2 }}
       >
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "black" }}>
-            <Stack sx={{ width: 60 }}>
-              <img
-                src="/Logo(beluga).png
+        {/* <Link to="/" style={{ textDecoration: "none" }}> */}
+        <Button
+          justifyContent="space-around"
+          sx={{ color: "black" }}
+          component={Link}
+          to="/"
+        >
+          <Stack sx={{ width: 50 }}>
+            <img
+              src="/Logo(beluga).png
         "
-              />
-            </Stack>
-            <Stack sx={{ marginLeft: 2, fontSize: 25, fontWeight: "bolder" }}>
-              BelugaSea
-            </Stack>
-          </Button>
-        </Link>
+            />
+          </Stack>
+          <Stack
+            sx={{
+              flexWrap: "wrap",
+              fontSize: 25,
+              fontWeight: "bolder",
+              marginLeft: 2,
+            }}
+          >
+            BelugaSea
+          </Stack>
+        </Button>
+        {/* </Link> */}
       </Stack>
       <Stack
         alignItems="center"
         justifyContent="center"
         direction="row"
-        sx={{ flexGrow: 3 }}
+        sx={{ flexGrow: 6 }}
       >
-        <Stack sx={{ width: 600 }}>
+        <Stack sx={{ height: "auto", maxWidth: 700, flexGrow: 0.8 }}>
           <TextField
             placeholder="search value"
             InputProps={{
@@ -52,59 +92,112 @@ export default function Header({ isLogin, connectWallet }) {
           />
         </Stack>
       </Stack>
-      <Stack sx={{ flexGrow: 0.6 }}>
-        <Stack
-          direction="row"
-          alignItems="center"
-          sx={{ margin: 0.8, height: "5vh" }}
+      <Stack
+        direction="row"
+        justifyContent="end"
+        sx={{ flexGrow: 0.6, flexWrap: "wrap" }}
+      >
+        <Button
+          to="/create"
+          sx={{
+            height: 70,
+            width: 200,
+            fontSize: 20,
+            fontWeight: "bolder",
+          }}
+          component={Link}
         >
-          <Stack
-            direction="row"
-            justifyContent="space-around"
-            sx={{ flexGrow: 1 }}
-          >
-            <Link to="/create" style={{ textDecoration: "none" }}>
-              <Button
-                to="/create"
-                sx={{
-                  height: 70,
-                  width: 200,
-                  fontSize: 20,
-                  fontWeight: "bolder",
-                }}
-              >
-                CREATE
-                <AddCircleIcon />
-              </Button>
-            </Link>
-            <Link to="/profile" style={{ textDecoration: "none" }}>
-              <Button
-                sx={{
-                  height: 70,
-                  width: 200,
-                  fontSize: 20,
-                  fontWeight: "bolder",
-                }}
-              >
-                PROFILE
-                <AccountCircleIcon />
-              </Button>
-            </Link>
+          CREATE
+          <AddCircleIcon />
+        </Button>
+        <Button
+          sx={{
+            height: 70,
+            width: 200,
+            fontSize: 20,
+            fontWeight: "bolder",
+          }}
+          component={Link}
+          to="/profile"
+        >
+          PROFILE
+          <AccountCircleIcon />
+        </Button>
+
+        <Button
+          id="demo-positioned-button"
+          aria-controls={open ? "demo-positioned-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+        >
+          <Stack sx={{ width: 50 }}>
+            {isLogin ? (
+              <img src="/beluga(login).png" />
+            ) : (
+              <img src="/beluga(notlogin).png" />
+            )}
           </Stack>
-          <Button
-            onClick={() => {
-              connectWallet();
+        </Button>
+        {isLogin ? (
+          <Menu
+            id="demo-positioned-menu"
+            aria-labelledby="demo-positioned-button"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
             }}
           >
-            <Stack sx={{ width: 50 }}>
-              {isLogin ? (
-                <img src="/beluga(login).png" />
-              ) : (
-                <img src="/beluga(notlogin).png" />
-              )}
-            </Stack>
-          </Button>
-        </Stack>
+            <MenuItem
+              onClick={() => {
+                handleLogOut();
+                handleClose();
+              }}
+            >
+              Logout
+            </MenuItem>
+          </Menu>
+        ) : (
+          <Menu
+            id="demo-positioned-menu"
+            aria-labelledby="demo-positioned-button"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+          >
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                connectMetaMask();
+              }}
+            >
+              MetaMask
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                connectKaikas();
+              }}
+            >
+              Kaikas
+            </MenuItem>
+          </Menu>
+        )}
       </Stack>
     </Stack>
   );
