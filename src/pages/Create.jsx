@@ -69,6 +69,19 @@ function Create() {
       const url = `https://ipfs.infura.io/ipfs/${added.path}`;
       setImgUrl(url);
       console.log(url);
+      const metaData = {
+        name: nftName,
+        description: description,
+        image: url,
+        attributes: [
+          {
+            external_link: externalLink,
+            blockchain: blockchain,
+            token_type: tokenType,
+          },
+        ],
+      };
+      console.log(metaData);
     } catch (error) {
       console.log("Error uploading file: ", error);
     }
