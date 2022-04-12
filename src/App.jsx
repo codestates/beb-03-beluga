@@ -97,7 +97,7 @@ function App() {
             <Route path="/list/:id">
               <NFT />
             </Route>
-            <Route path="/profile"><PROFILE/></Route>
+            <Route path="/profile"><Profile/></Route>
           </Stack>
           <Footer />
         </Stack>
