@@ -7,12 +7,12 @@ import { erc721Abi, erc721addr } from "../../erc721/erc721";
 import fetchMetaData from "../../fetchMetaData/fetchMetaData";
 
 
-const NFT = ({web3, account}) => {
+const NFT = ({ web3, account }) => {
     const param = useParams().id;
     const [data, setData] = useState({});
     const [onModalImg, setOnModalImg] = useState(false);
     const [to, setTo] = useState("");
-    
+
     useEffect(() => {
         async function fetchData() {
             const tokenContract = await new web3.eth.Contract(
@@ -53,6 +53,9 @@ const NFT = ({web3, account}) => {
                 setTo("");
             });
         } catch {
+            if(account === ""){
+                alert("이 서비스는 로그인이 필요합니다!");   
+            }
             if(account !== data.tokenOwner){
                 alert("당신은 이 NFT의 주인이 아닙니다!");
             } else {
