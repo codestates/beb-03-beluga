@@ -4,12 +4,13 @@ import Footer from "./pages/component/Footer";
 import Profile from "./pages/Profile";
 import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import NFTList from "./pages/NFTList";
+import ProfileNftList from "./pages/ProfileNftList";
 import Web3 from "web3";
 import NFT from "./pages/component/NFT";
 import Create from "./pages/Create";
 import Caver from "caver-js";
 import SearchNFTList from './pages/SearchNFTList';
+import AllNftList from "./pages/AllNftList";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -91,7 +92,7 @@ function App() {
               }}
             >
               <Route exact path="/">
-                <NFTList web3={web3} caver={caver} />
+                <AllNftList web3={web3} caver={caver} />
               </Route>
               <Route path="/create">
                 <Create account={account} web3={web3} caver={caver} />
@@ -103,7 +104,7 @@ function App() {
                 <Profile />
               </Route>
               <Route path="/profile/list">
-                <NFTList account={account} web3={web3} caver={caver} />
+                <ProfileNftList account={account} web3={web3} caver={caver} />
               </Route>
               <Route path="/search/:name">
                 <SearchNFTList web3={web3} caver={caver} />

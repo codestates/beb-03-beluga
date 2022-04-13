@@ -6,7 +6,7 @@ import { erc721Abi, erc721addr } from "../erc721/erc721";
 import fetchMetaData from "../fetchMetaData/fetchMetaData";
 import Loading from "./component/Loading";
 
-const NFTList = ({account = null, web3, caver}) => {
+const ProfileNftList = ({account = null, web3, caver}) => {
 
   const [lastPage, setLastPage] = useState(1);
   const [page, setPage] = useState(1);
@@ -43,23 +43,9 @@ const NFTList = ({account = null, web3, caver}) => {
                 getNFTData.push({ ...tokenMetaDataJSON, tokenId })
               }
           }
-        } else {
-          // 전부 보여준다.
-          let arr = [];
-          for (let i = 1; i <= totalSupply; i++) {
-              arr.push(i);
-          }
-          for (let tokenId of arr) {
-              let tokenURI = await tokenContract.methods
-                  .tokenURI(tokenId)
-                  .call();
-              const tokenMetaData = await fetchMetaData(tokenURI);
-              const tokenMetaDataJSON = await tokenMetaData.json();
-              getNFTData.push({ ...tokenMetaDataJSON, tokenId })
-          }
+        setNftData(getNFTData);
         }
       setIsLoading(false);
-      setNftData(getNFTData);
 
       if(getNFTData.length % 10 === 0){
         setLastPage(parseInt(getNFTData.length / 10));
@@ -124,4 +110,4 @@ const NFTList = ({account = null, web3, caver}) => {
   );
 };
 
-export default NFTList;
+export default ProfileNftList;
