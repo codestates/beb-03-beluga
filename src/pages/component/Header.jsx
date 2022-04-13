@@ -64,8 +64,8 @@ export default function Header({
         >
           <Stack sx={{ width: 50 }}>
             <img
-              src="/Logo(beluga).png
-        "
+              src="/Logo(beluga).png"
+              alt="logo"
             />
           </Stack>
           <Stack
@@ -144,9 +144,9 @@ export default function Header({
         >
           <Stack sx={{ width: 50 }}>
             {isLogin ? (
-              <img src="/beluga(login).png" />
+              <img src="/beluga(login).png" alt="login logo" />
             ) : (
-              <img src="/beluga(notlogin).png" />
+              <img src="/beluga(notlogin).png" alt="logout logo" />
             )}
           </Stack>
         </Button>
