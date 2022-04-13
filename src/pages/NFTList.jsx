@@ -25,12 +25,6 @@ const NFTList = ({account = null, web3, caver}) => {
         );
         const totalSupply = await tokenContract.methods.totalSupply().call();
 
-        if(totalSupply % 10 === 0){
-          setLastPage(parseInt(totalSupply / 10));
-        } else{
-          setLastPage(parseInt(totalSupply / 10) + 1);
-        }
-
         if(account){
           // 주소값으로 필터링
           let arr = [];
@@ -68,6 +62,12 @@ const NFTList = ({account = null, web3, caver}) => {
       }
       setIsLoading(false);
       setNftData(getNFTData);
+
+      if(getNFTData.length % 10 === 0){
+        setLastPage(parseInt(getNFTData.length / 10));
+      } else{
+        setLastPage(parseInt(getNFTData.length / 10) + 1);
+      }
     }
     fetchData();
   }, [web3, account]);
