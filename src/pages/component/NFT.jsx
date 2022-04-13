@@ -35,6 +35,12 @@ const NFT = ({ web3, account }) => {
       }, [web3, param]);
 
     const handleSend = async (tokenId) => {
+
+        if(account !== data.tokenOwner){
+            alert("당신은 이 NFT의 주인이 아닙니다!");
+            return;
+        }
+        
         const tokenContractSend = await new web3.eth.Contract(
             erc721Abi,
             erc721addr,
@@ -55,8 +61,7 @@ const NFT = ({ web3, account }) => {
         } catch {
             if(account === ""){
                 alert("이 서비스는 로그인이 필요합니다!");   
-            }
-            if(account !== data.tokenOwner){
+            } else if(account !== data.tokenOwner){
                 alert("당신은 이 NFT의 주인이 아닙니다!");
             } else {
                 alert("주소를 잘못 입력하신 게 아닐까요?");
