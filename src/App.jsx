@@ -42,6 +42,15 @@ function App() {
     }
   }, []);
 
+  useEffect(async () => {
+    if (web3 !== undefined) {
+      const tokenContract = await new web3.eth.Contract(erc721Abi, erc721addr);
+      const name = await tokenContract.methods.name().call();
+      const symbol = await tokenContract.methods.symbol().call();
+      const totalSupply = await tokenContract.methods.totalSupply().call();
+    }
+  }, [web3]);
+
   const connectMetaMask = async () => {
     let accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
@@ -90,16 +99,19 @@ function App() {
             }}
           >
             <Route exact path="/">
-              <NFTList account={account} web3={web3} caver={caver} />
+              <NFTList web3={web3} caver={caver} />
             </Route>
             <Route path="/create">
               <Create account={account} web3={web3} caver={caver} />
             </Route>
             <Route path="/list/:id">
-              <NFT />
+              <NFT web3={web3} account={account} />
             </Route>
             <Route path="/profile">
               <Profile />
+            </Route>
+            <Route path="/profile/list">
+              <NFTList account={account} web3={web3} caver={caver} />
             </Route>
           </Stack>
           <Footer />
