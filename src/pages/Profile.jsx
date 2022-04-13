@@ -56,7 +56,7 @@ export default function Profile (isLogin) {
             sx={{border:0, height: 40, width:"100%"}}
           >
           {/* Here's Navigation Bar  */}
-            <Link to="/collected" style={{textDecoration:"none"}}>
+            <Link to="/profile/list" style={{textDecoration:"none"}}>
               <Button
                 to="/collected"
                 sx={{

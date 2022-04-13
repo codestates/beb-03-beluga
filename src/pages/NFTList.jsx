@@ -17,7 +17,6 @@ const NFTList = ({account = null, web3, caver}) => {
   useEffect(() => {
     async function fetchData() {
       const getNFTData = [];
-      if(web3){
         setIsLoading(true);
         const tokenContract = await new web3.eth.Contract(
             erc721Abi,
@@ -59,7 +58,6 @@ const NFTList = ({account = null, web3, caver}) => {
               getNFTData.push({ ...tokenMetaDataJSON, tokenId })
           }
         }
-      }
       setIsLoading(false);
       setNftData(getNFTData);
 
@@ -69,7 +67,10 @@ const NFTList = ({account = null, web3, caver}) => {
         setLastPage(parseInt(getNFTData.length / 10) + 1);
       }
     }
-    fetchData();
+    if(web3){
+      // web3가 있을 때만
+      fetchData();
+    }
   }, [web3, account]);
 
   useEffect(() => {
@@ -83,11 +84,6 @@ const NFTList = ({account = null, web3, caver}) => {
   const handlePage = (event) => {
     const nowPageInt = parseInt(event.target.outerText);
     setPage(nowPageInt);
-  }
-
-  if(isLoading){
-    return (
-    <Loading/>);
   }
 
   return (isLoading ? <Loading/> : 
