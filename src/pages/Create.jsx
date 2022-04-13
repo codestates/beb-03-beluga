@@ -10,9 +10,10 @@ import {
 import { useState } from "react";
 import InputForm from "./component/InputForm";
 import { create } from "ipfs-http-client";
+import { erc721Abi, erc721addr } from "../erc721/erc721";
 const client = create("https://ipfs.infura.io:5001/api/v0");
 
-function Create() {
+function Create({ account, web3, caver }) {
   const baseImage =
     "https://cdn.pixabay.com/photo/2013/04/01/21/30/photo-99135_1280.png";
   const [imgSrc, setImgSrc] = useState(baseImage);
@@ -81,9 +82,17 @@ function Create() {
           },
         ],
       };
-      // console.log(metaData);
+      const metaRecv = JSON.stringify(metaData);
+      const added2 = await client.add(metaRecv);
+      const tokenURI = `https://ipfs.infura.io/ipfs/${added2.path}`;
+      console.log(tokenURI);
+
+      const tokenContract = await new web3.eth.Contract(erc721Abi, erc721addr);
+      console.log(1);
+      const nft = await tokenContract.methods.mintNFT(account, tokenURI).call();
+      console.log(2);
     } catch (error) {
-      console.log("Error uploading file: ", error);
+      console.log("Error: ", error);
     }
   };
 
