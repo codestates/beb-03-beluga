@@ -107,12 +107,16 @@ function App() {
             <Route path="/list/:id">
               <NFT web3={web3} account={account}/>
             </Route>
+<<<<<<< HEAD
+            <Route path="/profile"><Profile/></Route>
+=======
             <Route path="/profile">
               <Profile />
             </Route>
             <Route path="/profile/list">
               <NFTList account={account} web3={web3} caver={caver} />
             </Route>
+>>>>>>> ac0d028f1b60b875bf5c10f9310f6d9034aa1703
           </Stack>
           <Footer />
         </Stack>

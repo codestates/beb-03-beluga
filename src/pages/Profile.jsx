@@ -10,17 +10,18 @@ export default function Profile (isLogin) {
   return (
     <> 
       <Stack 
-        sx={{border: 0}}>
+        sx={{border: 0, height: 1000, width:"97%"}}>
 
           <Stack 
-            sx={{border: 0, borderColor:"green", height: 120, width: "100%"}}
+            sx={{border: 0, height: 100, width: "100%"}}
           >
-            Here's background div
+            <img src="/wave2.png"/>
+            {/* Here's background div */}
           </Stack>
 
           <Stack
-            sx={{border: 1, borderColor:"gray", height: 130 , width: "100%"}}>
-            Here's profile and info div
+            sx={{border: 0, borderColor:"none", height: 100 , width: "100%"}}>
+            {/* Here's profile and info div */}
           </Stack>
 
           <Stack  
@@ -28,10 +29,10 @@ export default function Profile (isLogin) {
             direction="row" 
             //justifyContent="center"
             //alginItems= "center"
-            sx={{border:0, borderRadius: "50%", height: 100, width: 100, marginTop:9, marginLeft:"45%"}}
+            sx={{border:0, borderRadius: "50%", height: 100, width: 100, marginTop:6, marginLeft:"43%"}}
           >
             {isLogin ? (
-                <img src="/beluga(login).png" />
+                <img src="/beluga_login_removebg.png" />
               ) : (
                 <img src="/beluga(notlogin).png" />
               )}
@@ -41,18 +42,18 @@ export default function Profile (isLogin) {
           <Stack  
             position="absolute"
             direction="column"
-            
-            sx={{border: 1, height: 70, width: 300, marginTop:22, marginLeft:"38%"}}
+            alignItems="left"
+            sx={{border: 0, height: 60, width: 200, marginTop:18, marginLeft:"40%"}}
           >
-            {/* Name
-            Address
-            Joined Day */}
+            Name
+            Account info
+            Joined Day
           </Stack>
 
           <Stack
             direction="row"
             justifyContent="space-around"
-            sx={{border:"solid transparent", height: 40, width:"100%"}}
+            sx={{border:0, height: 40, width:"100%"}}
           >
           {/* Here's Navigation Bar  */}
             <Link to="/collected" style={{textDecoration:"none"}}>
