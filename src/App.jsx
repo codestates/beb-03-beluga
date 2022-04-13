@@ -42,15 +42,15 @@ function App() {
     }
   }, []);
 
-  useEffect(async () => {
-    if (web3 !== undefined) {
-      const tokenContract = await new web3.eth.Contract(erc721Abi, erc721addr);
-      const name = await tokenContract.methods.name().call();
-      const symbol = await tokenContract.methods.symbol().call();
-      const totalSupply = await tokenContract.methods.totalSupply().call();
-      console.log(name);
-    }
-  }, [web3]);
+  // useEffect(async () => {
+  //   if (web3 !== undefined) {
+  //     const tokenContract = await new web3.eth.Contract(erc721Abi, erc721addr);
+  //     const name = await tokenContract.methods.name().call();
+  //     const symbol = await tokenContract.methods.symbol().call();
+  //     const totalSupply = await tokenContract.methods.totalSupply().call();
+  //     console.log(name);
+  //   }
+  // }, [web3]);
 
   const connectMetaMask = async () => {
     let accounts = await window.ethereum.request({
