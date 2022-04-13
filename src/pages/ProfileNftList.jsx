@@ -75,7 +75,7 @@ const ProfileNftList = ({account = null, web3, caver}) => {
   return (isLoading ? <Loading/> : 
     <Stack alignItems="center">
       <Stack direction="row" justifyContent="center" sx={{ flexWrap: "wrap" }}>
-        {pageNftData.map((el) => {
+        {pageNftData.length > 0 ? pageNftData.map((el) => {
           return (
             <Stack
               key={el.tokenId}
@@ -102,7 +102,7 @@ const ProfileNftList = ({account = null, web3, caver}) => {
               </Link>
             </Stack>
           );
-        })}
+        }) : <p>데이터가 없습니다.</p>}
       </Stack>
       <Pagination count={lastPage} defaultPage={1} boundaryCount={2} 
         color="primary" size="large" sx={{margin: 2}} onChange={(e) => handlePage(e)}/>

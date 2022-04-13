@@ -9,7 +9,7 @@ import Web3 from "web3";
 import NFT from "./pages/component/NFT";
 import Create from "./pages/Create";
 import Caver from "caver-js";
-import SearchNFTList from './pages/SearchNFTList';
+import SearchNftList from './pages/SearchNftList';
 import AllNftList from "./pages/AllNftList";
 
 function App() {
@@ -107,7 +107,7 @@ function App() {
                 <ProfileNftList account={account} web3={web3} caver={caver} />
               </Route>
               <Route path="/search/:name">
-                <SearchNFTList web3={web3} caver={caver} />
+                <SearchNftList web3={web3} caver={caver} />
               </Route>
             </Stack>
             <Footer />
