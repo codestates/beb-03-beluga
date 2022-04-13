@@ -6,6 +6,7 @@ import {
   Select,
   MenuItem,
   Button,
+  Alert,
 } from "@mui/material";
 import { useState } from "react";
 import InputForm from "./component/InputForm";
@@ -22,8 +23,9 @@ function Create({ account, web3, caver }) {
   const [nftName, setNftName] = useState("");
   const [externalLink, setExternalLink] = useState("");
   const [description, setDescription] = useState("");
-  const [blockchain, setBlockchain] = useState("");
-  const [tokenType, setTokenType] = useState("");
+  const [blockchain, setBlockchain] = useState("Ethereum");
+  const [tokenType, setTokenType] = useState("ERC-721");
+  const [alert, setAlert] = useState(false);
 
   const handleImagePreview = (target) => {
     const fileBlob = target.files[0];
@@ -57,42 +59,43 @@ function Create({ account, web3, caver }) {
     setTokenType(input);
   };
   const handleCreateButton = async () => {
-    if (
-      imgSrc === baseImage ||
-      nftName === "" ||
-      blockchain === "" ||
-      tokenType === ""
-    ) {
-      // 빈칸 채우라고 띄움
-    }
-    try {
-      const added = await client.add(fileBlob);
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
-      setImgUrl(url);
-      // console.log(url);
-      const metaData = {
-        name: nftName,
-        description: description,
-        image: url,
-        attributes: [
-          {
-            external_link: externalLink,
-            blockchain: blockchain,
-            token_type: tokenType,
-          },
-        ],
-      };
-      const metaRecv = JSON.stringify(metaData);
-      const added2 = await client.add(metaRecv);
-      const tokenURI = `https://ipfs.infura.io/ipfs/${added2.path}`;
-      console.log(tokenURI);
+    if (account === "" || imgSrc === baseImage || nftName === "") {
+      setAlert(true);
+    } else {
+      setAlert(false);
+      try {
+        const added = await client.add(fileBlob);
+        const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+        setImgUrl(url);
+        // console.log(url);
+        const metaData = {
+          name: nftName,
+          description: description,
+          image: url,
+          attributes: [
+            {
+              external_link: externalLink,
+              blockchain: blockchain,
+              token_type: tokenType,
+            },
+          ],
+        };
+        const metaRecv = JSON.stringify(metaData);
+        const added2 = await client.add(metaRecv);
+        const tokenURI = `https://ipfs.infura.io/ipfs/${added2.path}`;
+        console.log(tokenURI);
 
-      const tokenContract = await new web3.eth.Contract(erc721Abi, erc721addr);
-      console.log(1);
-      const nft = await tokenContract.methods.mintNFT(account, tokenURI).call();
-      console.log(2);
-    } catch (error) {
-      console.log("Error: ", error);
+        const tokenContract = await new web3.eth.Contract(
+          erc721Abi,
+          erc721addr
+        );
+        const nft = await tokenContract.methods
+          .mintNFT(account, tokenURI)
+          .send({ from: account });
+        console.log(nft);
+      } catch (error) {
+        console.log("Error: ", error);
+      }
     }
   };
 
@@ -139,7 +142,7 @@ function Create({ account, web3, caver }) {
 
       <Stack sx={{ width: 4 / 5 }}>
         {contents.map((item, idx) => (
-          <InputForm key={idx} item={item}></InputForm>
+          <InputForm key={idx} item={item} />
         ))}
       </Stack>
 
@@ -149,6 +152,7 @@ function Create({ account, web3, caver }) {
           labelId="select-blockchain-label"
           id="blockchain-select"
           label="Block-chain"
+          defaultValue="Ethereum"
           onChange={(e) => {
             handleChangeBlockchain(e.target.value);
           }}
@@ -167,6 +171,7 @@ function Create({ account, web3, caver }) {
           labelId="select-type-label"
           id="token-select"
           label="Token"
+          defaultValue="ERC-721"
           onChange={(e) => {
             handleChangeTokenType(e.target.value);
           }}
@@ -178,6 +183,18 @@ function Create({ account, web3, caver }) {
           토큰을 선택해주세요
         </FormHelperText>
       </FormControl>
+      {alert ? (
+        <Alert
+          severity="error"
+          onClose={() => {
+            setAlert(false);
+          }}
+        >
+          로그인, 사진, 이름은 필수입니다.
+        </Alert>
+      ) : (
+        ""
+      )}
       <Button onClick={handleCreateButton}>CREATE</Button>
     </Stack>
   );
