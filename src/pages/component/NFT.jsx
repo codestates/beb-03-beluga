@@ -40,7 +40,7 @@ const NFT = ({ web3, account }) => {
             alert("당신은 이 NFT의 주인이 아닙니다!");
             return;
         }
-        
+
         const tokenContractSend = await new web3.eth.Contract(
             erc721Abi,
             erc721addr,
@@ -92,9 +92,9 @@ const NFT = ({ web3, account }) => {
                 </Stack>
                 <Stack sx={{border: 1, padding: 4.5, marginTop:5, borderRadius: 3}}>
                     <Stack sx={{borderBottom: 1, width:"fit-content", marginRight:"auto", marginLeft:"auto", padding: 0.5}}>attributes</Stack>
-                    <p style={{color: "purple"}}>{data.attributes[0].external_link}</p>
-                    <p style={{color: "purple"}}>{data.attributes[0].blockchain}</p>
-                    <p style={{color: "purple"}}>{data.attributes[0].token_type}</p>
+                    <p style={{color: "purple"}}>외부 링크 : {data.attributes[0].external_link}</p>
+                    <p style={{color: "purple"}}>블록체인 네트워크 : {data.attributes[0].blockchain}</p>
+                    <p style={{color: "purple"}}>토큰 타입 : {data.attributes[0].token_type}</p>
                 </Stack>
                 <Stack flexDirection="row" sx={{margin: 3}}>
                     <Input placeholder="이 토큰을 전송할 주소" onChange={e => setTo(e.target.value)} sx={{marginRight: 3, width: 500}}/>
