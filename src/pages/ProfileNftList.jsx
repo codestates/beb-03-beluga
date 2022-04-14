@@ -102,7 +102,8 @@ const ProfileNftList = ({account = null, web3, caver}) => {
               </Link>
             </Stack>
           );
-        }) : <p>데이터가 없습니다.</p>}
+        }) : account ? 
+          <p>소유한 NFT가 없습니다.</p> : <p>로그인을 해주세요.</p>}
       </Stack>
       <Pagination count={lastPage} defaultPage={1} boundaryCount={2} 
         color="primary" size="large" sx={{margin: 2}} onChange={(e) => handlePage(e)}/>
