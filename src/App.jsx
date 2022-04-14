@@ -9,7 +9,7 @@ import Web3 from "web3";
 import NFT from "./pages/component/NFT";
 import Create from "./pages/Create";
 import Caver from "caver-js";
-import { erc721Abi, erc721addr } from "./erc721/erc721";
+import Main from "./pages/Main";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -41,15 +41,6 @@ function App() {
       }
     }
   }, []);
-
-  useEffect(async () => {
-    if (web3 !== undefined) {
-      const tokenContract = await new web3.eth.Contract(erc721Abi, erc721addr);
-      const name = await tokenContract.methods.name().call();
-      const symbol = await tokenContract.methods.symbol().call();
-      const totalSupply = await tokenContract.methods.totalSupply().call();
-    }
-  }, [web3]);
 
   const connectMetaMask = async () => {
     let accounts = await window.ethereum.request({
@@ -99,19 +90,24 @@ function App() {
             }}
           >
             <Route exact path="/">
+              <Main />
+            </Route>
+            <Route path="/list">
               <NFTList web3={web3} caver={caver} />
             </Route>
             <Route path="/create">
               <Create account={account} web3={web3} caver={caver} />
             </Route>
-            <Route path="/list/:id">
+            <Route exact path="/list/:id">
               <NFT web3={web3} account={account} />
             </Route>
             <Route path="/profile">
-              <Profile />
-            </Route>
-            <Route path="/profile/list">
-              <NFTList account={account} web3={web3} caver={caver} />
+              <Profile
+                isLogin={isLogin}
+                account={account}
+                web3={web3}
+                caver={caver}
+              />
             </Route>
           </Stack>
           <Footer />

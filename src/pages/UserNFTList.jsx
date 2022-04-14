@@ -43,18 +43,6 @@ const NFTList = ({ account = null, web3, caver }) => {
               getNFTData.push({ ...tokenMetaDataJSON, tokenId });
             }
           }
-        } else {
-          // 전부 보여준다.
-          let arr = [];
-          for (let i = 1; i <= totalSupply; i++) {
-            arr.push(i);
-          }
-          for (let tokenId of arr) {
-            let tokenURI = await tokenContract.methods.tokenURI(tokenId).call();
-            const tokenMetaData = await fetchMetaData(tokenURI);
-            const tokenMetaDataJSON = await tokenMetaData.json();
-            getNFTData.push({ ...tokenMetaDataJSON, tokenId });
-          }
         }
       }
       setIsLoading(false);
