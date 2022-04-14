@@ -108,15 +108,17 @@ const UserNFTList = ({ account = null, web3, caver }) => {
           );
         })}
       </Stack>
-      {nftData.length > 0 ? <Pagination
-        count={lastPage}
-        defaultPage={1}
-        boundaryCount={2}
-        color="primary"
-        size="large"
-        sx={{ margin: 2 }}
-        onChange={(e) => handlePage(e)}
-      /> : null}
+      {nftData.length > 0 ? (
+        <Pagination
+          count={lastPage}
+          defaultPage={1}
+          boundaryCount={2}
+          color="primary"
+          size="large"
+          sx={{ margin: 2 }}
+          onChange={(e) => handlePage(e)}
+        />
+      ) : null}
     </Stack>
   );
 };
