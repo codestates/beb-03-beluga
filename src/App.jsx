@@ -8,7 +8,7 @@ import Web3 from "web3";
 import NFT from "./pages/component/NFT";
 import Create from "./pages/Create";
 import Caver from "caver-js";
-import SearchNftList from './pages/SearchNftList';
+import SearchNftList from "./pages/SearchNftList";
 import AllNftList from "./pages/AllNftList";
 import Main from "./pages/Main";
 
@@ -85,24 +85,24 @@ function App() {
               alignItems="center"
               sx={{
                 height: "auto",
-                minHeight: "80%",
+                minHeight: "100vh",
                 width: "100%",
                 marginTop: 4,
-                marginBottom: 30,
+                marginBottom: 24,
               }}
             >
               <Route exact path="/">
                 <Main />
               </Route>
-              <Route path="/list">
+              <Route exact path="/list">
                 <AllNftList web3={web3} caver={caver} />
               </Route>
-                <Route path="/list/:id">
-                  <NFT web3={web3} account={account}/>
-                </Route>
-                <Route path="/search/:name">
-                  <SearchNftList web3={web3} caver={caver} />
-                </Route>
+              <Route path="/list/:id">
+                <NFT web3={web3} account={account} />
+              </Route>
+              <Route path="/search/:name">
+                <SearchNftList web3={web3} caver={caver} />
+              </Route>
               <Route path="/create">
                 <Create account={account} web3={web3} caver={caver} />
               </Route>
@@ -115,7 +115,7 @@ function App() {
                 />
               </Route>
             </Stack>
-          <Footer />
+            <Footer />
           </Stack>
         </>
       </Switch>
