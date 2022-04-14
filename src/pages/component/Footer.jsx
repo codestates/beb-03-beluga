@@ -58,8 +58,8 @@ export default function Footer() {
           >
             <Stack sx={{ margin: 1, width: 60 }}>
               <img
-                src="/Logo(beluga).png
-        "
+                src="/Logo(beluga).png"
+                alt="footer logo"
               />
             </Stack>
             <Stack

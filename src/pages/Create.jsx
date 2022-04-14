@@ -12,6 +12,8 @@ import { useState } from "react";
 import InputForm from "./component/InputForm";
 import { create } from "ipfs-http-client";
 import { erc721Abi, erc721addr } from "../erc721/erc721";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import SuccessMinting from "./component/SuccessMinting";
 const client = create("https://ipfs.infura.io:5001/api/v0");
 
 function Create({ account, web3, caver }) {
@@ -26,6 +28,8 @@ function Create({ account, web3, caver }) {
   const [blockchain, setBlockchain] = useState("Ethereum");
   const [tokenType, setTokenType] = useState("ERC-721");
   const [alert, setAlert] = useState(false);
+  const [waitNftMinting, setWaitNftMinting] = useState(false);
+  const [successMinting, setSuccessMinting] = useState(false);
 
   const handleImagePreview = (target) => {
     const fileBlob = target.files[0];
@@ -58,6 +62,7 @@ function Create({ account, web3, caver }) {
   const handleChangeTokenType = (input) => {
     setTokenType(input);
   };
+
   const handleCreateButton = async () => {
     if (account === "" || imgSrc === baseImage || nftName === "") {
       setAlert(true);
@@ -67,7 +72,6 @@ function Create({ account, web3, caver }) {
         const added = await client.add(fileBlob);
         const url = `https://ipfs.infura.io/ipfs/${added.path}`;
         setImgUrl(url);
-        // console.log(url);
         const metaData = {
           name: nftName,
           description: description,
@@ -83,20 +87,27 @@ function Create({ account, web3, caver }) {
         const metaRecv = JSON.stringify(metaData);
         const added2 = await client.add(metaRecv);
         const tokenURI = `https://ipfs.infura.io/ipfs/${added2.path}`;
-        console.log(tokenURI);
 
         const tokenContract = await new web3.eth.Contract(
           erc721Abi,
           erc721addr
         );
+        setWaitNftMinting(true);
+        setSuccessMinting(false);
         const nft = await tokenContract.methods
           .mintNFT(account, tokenURI)
           .send({ from: account });
-        console.log(nft);
+        setSuccessMinting(true);
       } catch (error) {
         console.log("Error: ", error);
       }
     }
+  };
+
+  const resetWaitNftMinting = () => {
+    setImgSrc(baseImage);
+    setNftName("");
+    setWaitNftMinting(false);
   };
 
   const contents = [
@@ -130,23 +141,31 @@ function Create({ account, web3, caver }) {
     },
   ];
 
-  return (
+  return waitNftMinting ? (
+    successMinting ? (
+      <SuccessMinting reset={resetWaitNftMinting}></SuccessMinting>
+    ) : (
+      <Stack alignItems="center">
+        <CircularProgress></CircularProgress>
+        NFT 민팅 중... Please Wait...
+      </Stack>
+    )
+  ) : (
     <Stack
-      sx={{ border: 1, width: 4 / 5 }}
+      sx={{ width: 4 / 5, maxWidth: "600px" }}
       margin="auto"
       alignItems="center"
       component="form"
-      marginBottom={10}
     >
       <img src={imgSrc} alt="preview-img" height={200} width={200} />
 
-      <Stack sx={{ width: 4 / 5 }}>
+      <Stack sx={{ width: 4 / 5, marginBottom: "5%" }}>
         {contents.map((item, idx) => (
           <InputForm key={idx} item={item} />
         ))}
       </Stack>
 
-      <FormControl sx={{ width: 4 / 5 }}>
+      <FormControl sx={{ width: 4 / 5, marginBottom: "5%" }}>
         <InputLabel id="select-blockchain">Block-chain</InputLabel>
         <Select
           labelId="select-blockchain-label"
