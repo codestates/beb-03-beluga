@@ -152,20 +152,35 @@ function Create({ account, web3, caver }) {
     )
   ) : (
     <Stack
-      sx={{ width: 4 / 5, maxWidth: "600px" }}
+      sx={{
+        height: "100vh",
+        maxWidth: 1200,
+        width: "80%",
+        mb: 5,
+        mt: 2,
+      }}
       margin="auto"
       alignItems="center"
+      justifyContent="center"
       component="form"
     >
-      <img src={imgSrc} alt="preview-img" height={200} width={200} />
+      <img src={imgSrc} alt="preview-img" style={{ height: 200, width: 200 }} />
 
-      <Stack sx={{ width: 4 / 5, marginBottom: "5%" }}>
+      <Stack
+        sx={{
+          height: "50%",
+          width: "80%",
+          mb: 6,
+          mt: 3,
+          justifyContent: "space-around",
+        }}
+      >
         {contents.map((item, idx) => (
           <InputForm key={idx} item={item} />
         ))}
       </Stack>
 
-      <FormControl sx={{ width: 4 / 5, marginBottom: "5%" }}>
+      <FormControl sx={{ width: "80%", marginBottom: 8 }}>
         <InputLabel id="select-blockchain">Block-chain</InputLabel>
         <Select
           labelId="select-blockchain-label"
@@ -184,7 +199,7 @@ function Create({ account, web3, caver }) {
         </FormHelperText>
       </FormControl>
 
-      <FormControl sx={{ width: 4 / 5 }}>
+      <FormControl sx={{ width: "80%", marginBottom: 8 }}>
         <InputLabel id="select-token-type">Token-Type</InputLabel>
         <Select
           labelId="select-type-label"
@@ -214,7 +229,9 @@ function Create({ account, web3, caver }) {
       ) : (
         ""
       )}
-      <Button onClick={handleCreateButton}>CREATE</Button>
+      <Button sx={{ fontSize: 20, mt: 2 }} onClick={handleCreateButton}>
+        CREATE
+      </Button>
     </Stack>
   );
 }
