@@ -73,7 +73,7 @@ const UserNFTList = ({ account = null, web3, caver }) => {
   return isLoading ? (
     <Loading />
   ) : (
-    <Stack alignItems="center" sx={{ width: "80%" }}>
+    <Stack alignItems="center" sx={{ width: "100%" }}>
       <Stack direction="row" justifyContent="center" sx={{ flexWrap: "wrap" }}>
         {pageNftData.map((el) => {
           return (
@@ -82,7 +82,7 @@ const UserNFTList = ({ account = null, web3, caver }) => {
               alignItems="center"
               textAlign="center"
               sx={{
-                width: 450,
+                width: 300,
                 border: 1,
                 margin: 3,
                 padding: -0.1,
@@ -102,13 +102,13 @@ const UserNFTList = ({ account = null, web3, caver }) => {
                   width: "100%",
                 }}
               >
-                <NFTListShow data={el} />
+                <NFTListShow data={el} imgHeightSetting={300} />
               </Link>
             </Stack>
           );
         })}
       </Stack>
-      <Pagination
+      {nftData.length > 0 ? <Pagination
         count={lastPage}
         defaultPage={1}
         boundaryCount={2}
@@ -116,7 +116,7 @@ const UserNFTList = ({ account = null, web3, caver }) => {
         size="large"
         sx={{ margin: 2 }}
         onChange={(e) => handlePage(e)}
-      />
+      /> : null}
     </Stack>
   );
 };
