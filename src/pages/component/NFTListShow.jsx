@@ -1,11 +1,11 @@
 import { Stack, Box } from "@mui/material";
 
-const NFTListShow = ({ data }) => {
+const NFTListShow = ({ data, imgHeightSetting = 400 }) => {
   return (
     <Box>
       <Stack>
         <img
-          style={{ height: 400, borderRadius: "15px 15px 2px 2px" }}
+          style={{ height: imgHeightSetting, borderRadius: "15px 15px 2px 2px" }}
           src={data.image}
           alt={data.name}
         />

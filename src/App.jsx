@@ -94,7 +94,7 @@ function App() {
               <Route exact path="/">
                 <Main />
               </Route>
-              <Route path="/list">
+              <Route exact path="/list">
                 <AllNftList web3={web3} caver={caver} />
               </Route>
                 <Route path="/list/:id">
