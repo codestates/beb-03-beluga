@@ -83,22 +83,21 @@ const AllNftList = ({web3, caver}) => {
     return (
             isLoading
             ? <Loading/>
-            : <Stack alignItems="center">
+            : <Stack width="100vw" textAlign="center">
                 <Stack
-                    direction="row"
-                    justifyContent="center"
+                    display="grid"
                     sx={{
-                        flexWrap: "wrap"
+                        gridTemplateColumns: "repeat(auto-fit, minmax(400px, 500px))",
+                        gridTemplateRows: "repeat(auto-fit, minmax(400px, 500px))",
+                        width: "100%",
+                        justifyContent: "center"
                     }}>
                     {
                         nftData.map((el) => {
                             return (
                                 <Stack
                                     key={el.tokenId}
-                                    alignItems="center"
-                                    textAlign="center"
                                     sx={{
-                                        width: 450,
                                         border: 1,
                                         margin: 3,
                                         padding: -0.1,
@@ -114,7 +113,6 @@ const AllNftList = ({web3, caver}) => {
                                         style={{
                                             textDecoration: "none",
                                             color: "black",
-                                            width: "100%"
                                         }}>
                                         <NFTListShow data={el}/>
                                     </Link>
@@ -123,17 +121,19 @@ const AllNftList = ({web3, caver}) => {
                         })
                     }
                 </Stack>
-                <Pagination
-                    count={lastPage === -1 ? 1 : lastPage}
-                    defaultPage={1}
-                    page={page}
-                    boundaryCount={2}
-                    color="primary"
-                    size="large"
-                    sx={{
-                        margin: 2
-                    }}
-                    onChange={(e) => handlePage(e)}/>
+                <Stack width="100%" alignItems="center">
+                    <Pagination
+                        count={lastPage === -1 ? 1 : lastPage}
+                        defaultPage={1}
+                        page={page}
+                        boundaryCount={2}
+                        color="primary"
+                        size="large"
+                        sx={{
+                            margin: 2
+                        }}
+                        onChange={(e) => handlePage(e)}/>
+                </Stack>
             </Stack>
         );
 };

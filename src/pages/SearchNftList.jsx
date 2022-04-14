@@ -71,8 +71,13 @@ const SearchNFTList = ({web3, caver}) => {
       }
 
       return (isLoading ? <Loading/> : 
-      <Stack alignItems="center">
-        <Stack direction="row" justifyContent="center" sx={{ flexWrap: "wrap" }}>
+      <Stack width="100vw" textAlign="center">
+        <Stack display="grid"
+                    sx={{
+                      gridTemplateColumns: "repeat(auto-fit, minmax(400px, 500px))",
+                        width: "100%",
+                        justifyContent: "center"
+                    }}>
           {pageNftData.length > 0 ? pageNftData.map((el) => {
             return (
               <Stack
@@ -80,7 +85,6 @@ const SearchNFTList = ({web3, caver}) => {
                 alignItems="center"
                 textAlign="center"
                 sx={{
-                  width: 450,
                   border: 1,
                   margin: 3,
                   padding: -0.1,
@@ -102,8 +106,10 @@ const SearchNFTList = ({web3, caver}) => {
             );
           }) : <p>검색 결과가 없습니다.</p>}
         </Stack>
-        <Pagination count={lastPage} defaultPage={1} boundaryCount={2} 
-          color="primary" size="large" sx={{margin: 2}} onChange={(e) => handlePage(e)}/>
+        <Stack width="100%" alignItems="center">
+          <Pagination count={lastPage} defaultPage={1} boundaryCount={2} 
+            color="primary" size="large" sx={{margin: 2}} onChange={(e) => handlePage(e)}/>
+          </Stack>
       </Stack>
     );
 }
