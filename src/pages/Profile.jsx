@@ -11,11 +11,11 @@ import Sidebar from "./component/Sidebar";
 export default function Profile({ isLogin, account, web3, caver }) {
   return (
     <>
-      <Stack sx={{ height: "150vh", width: "100%" }}>
+      <Stack sx={{ height: "100vh", width: "100%" }}>
         <Stack
           alignItems="center"
           justifyContent="center"
-          sx={{ height: "15%" }}
+          sx={{ height: "30%" }}
         >
           <Stack
             sx={{
