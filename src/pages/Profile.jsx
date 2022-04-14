@@ -1,137 +1,170 @@
-import { Stack, Button } from "@mui/material";
-import { Link } from "react-router-dom";
-import QueueOutlinedIcon from '@mui/icons-material/QueueOutlined';
-import SaveAsOutlinedIcon from '@mui/icons-material/SaveAsOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import HistoryIcon from '@mui/icons-material/History';
+import { Stack, Button, Box } from "@mui/material";
+import { Link, Switch, Route } from "react-router-dom";
+import QueueOutlinedIcon from "@mui/icons-material/QueueOutlined";
+import SaveAsOutlinedIcon from "@mui/icons-material/SaveAsOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import HistoryIcon from "@mui/icons-material/History";
+import UserNFTList from "./UserNFTList";
+import Sidebar from "./component/Sidebar";
 
-export default function Profile (isLogin) {
+export default function Profile({ isLogin, account, web3, caver }) {
   return (
-    <> 
-      <Stack 
-        sx={{border: 0, height: 1000, width:"97%"}}>
-
-          <Stack 
-            sx={{border: 0, height: 100, width: "100%"}}
-          >
-            <img src="/wave2.png"/>
-            {/* Here's background div */}
-          </Stack>
-
+    <>
+      <Stack sx={{ height: "100vh", width: "100%" }}>
+        <Stack
+          alignItems="center"
+          justifyContent="center"
+          sx={{ height: "30%" }}
+        >
           <Stack
-            sx={{border: 0, borderColor:"none", height: 100 , width: "100%"}}>
-            {/* Here's profile and info div */}
-          </Stack>
-
-          <Stack  
-            position="absolute"
-            direction="row" 
-            //justifyContent="center"
-            //alginItems= "center"
-            sx={{border:0, borderRadius: "50%", height: 100, width: 100, marginTop:6, marginLeft:"43%"}}
-          >
-            {isLogin ? (
-                <img src="/beluga_login_removebg.png" />
-              ) : (
-                <img src="/beluga(notlogin).png" />
-              )}
-            {/* Here's Profile Icon */}
-          </Stack>
-
-          <Stack  
-            position="absolute"
-            direction="column"
-            alignItems="left"
-            sx={{border: 0, height: 60, width: 200, marginTop:18, marginLeft:"40%"}}
-          >
-            Name
-            Account info
-            Joined Day
-          </Stack>
-
+            sx={{
+              flexGrow: 1,
+              width: "100%",
+              backgroundColor: "#DFE2E6",
+            }}
+          ></Stack>
+          <Stack sx={{ flexGrow: 1, width: "100%" }}></Stack>
           <Stack
-            direction="row"
-            justifyContent="space-around"
-            sx={{border:0, height: 40, width:"100%"}}
+            position="absolute"
+            sx={{
+              height: 320,
+              width: 270,
+            }}
           >
-          {/* Here's Navigation Bar  */}
-            <Link to="/profile/list" style={{textDecoration:"none"}}>
-              <Button
-                to="/collected"
-                sx={{
-                  height:70,
-                  fontSize:17,
-                  fontWeight:"bolder"
-                }}
-              >
-                <QueueOutlinedIcon/>
-                Collected
-              </Button>
+            <Box
+              sx={{
+                borderRadius: "50%",
 
-            </Link>
-            <Link to="/created" style={{textDecoration:"none"}}>
-              <Button
-                to="/created"
-                sx={{
-                  height:70,
-                  fontSize:17,
-                  fontWeight:"bolder"
+                height: "100%",
+                width: "100%",
+                position: "relative",
+              }}
+            >
+              <img
+                style={{
+                  position: "absolute",
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "100%",
                 }}
-              >
-                <SaveAsOutlinedIcon/>
-                Created
-              </Button>
-            </Link>
+                src="/beluga_login_removebg.png"
+              />
+            </Box>
 
-            <Link to="/favorited" style={{textDecoration:"none"}}>
-              <Button
-                to="/favorited"
+            <Stack
+              direction="column"
+              sx={{
+                height: "30%",
+                width: "100%",
+              }}
+            >
+              <Box
                 sx={{
-                  height:70,
-                  fontSize:17,
-                  fontWeight:"bolder"
-                }}
-              >
-                <FavoriteBorderOutlinedIcon/>
-                Favorited
-              </Button>
-            </Link>
+                  textAlign: "center",
 
-            <Link to="/hidden" style={{textDecoration:"none"}}>
-              <Button
-                to="/hidden"
-                sx={{
-                  height:70,
-                  fontSize:17,
-                  fontWeight:"bolder"
+                  fontSize: 25,
+                  fontWeight: "bolder",
+                  height: "50%",
+                  width: "100%",
                 }}
               >
-                <VisibilityOffIcon/>
-                Hidden
-              </Button>
-            </Link>
-
-            <Link to="/activity" style={{textDecoration:"none"}}>
-              <Button
-                to="/activity"
+                Unnamed
+              </Box>
+              <Box
                 sx={{
-                  height:70,
-                  fontSize:17,
-                  fontWeight:"bolder"
+                  height: "50%",
+                  width: "100%",
+                  fontSize: 20,
+                  overflow: "hidden",
                 }}
               >
-                <HistoryIcon/>
-                Activity
-              </Button>
-            </Link>
+                {account}
+              </Box>
+            </Stack>
           </Stack>
+        </Stack>
+        <Stack
+          direction="row"
+          justifyContent="space-around"
+          sx={{ height: "6%", width: "100%" }}
+        >
+          <Button
+            component={Link}
+            to="/profile/list"
+            sx={{
+              height: "100%",
+              fontSize: 17,
+              fontWeight: "bolder",
+            }}
+          >
+            <QueueOutlinedIcon />
+            Collected
+          </Button>
 
-       
+          <Button
+            sx={{
+              height: "100%",
+              fontSize: 17,
+              fontWeight: "bolder",
+            }}
+          >
+            <SaveAsOutlinedIcon />
+            Created
+          </Button>
+          <Button
+            to="/favorited"
+            sx={{
+              height: "100%",
+              fontSize: 17,
+              fontWeight: "bolder",
+            }}
+          >
+            <FavoriteBorderOutlinedIcon />
+            Favorited
+          </Button>
+
+          <Button
+            to="/hidden"
+            sx={{
+              height: "100%",
+              fontSize: 17,
+              fontWeight: "bolder",
+            }}
+          >
+            <VisibilityOffIcon />
+            Hidden
+          </Button>
+
+          <Button
+            component={Link}
+            to="profile/activity"
+            sx={{
+              height: "100%",
+              fontSize: 17,
+              fontWeight: "bolder",
+            }}
+          >
+            <HistoryIcon />
+            Activity
+          </Button>
+        </Stack>
+        <Stack
+          direction="row"
+          sx={{ border: 1, height: "64%", borderTop: 2, borderColor: "gray" }}
+        >
+          <Stack sx={{ height: "100%", width: "20%", border: 1 }}>
+            <Sidebar />
+          </Stack>
+          <Switch>
+            <Stack sx={{ height: "100%", width: "80%", border: 1 }}>
+              <Route path="/profile/list">
+                <UserNFTList account={account} web3={web3} caver={caver} />
+              </Route>
+            </Stack>
+          </Switch>
+        </Stack>
       </Stack>
     </>
-  )
-  
-
-
+  );
 }

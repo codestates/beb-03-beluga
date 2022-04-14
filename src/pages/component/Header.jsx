@@ -121,19 +121,36 @@ export default function Header({
           CREATE
           <AddCircleIcon />
         </Button>
-        <Button
-          sx={{
-            height: 70,
-            width: 200,
-            fontSize: 20,
-            fontWeight: "bolder",
-          }}
-          component={Link}
-          to="/profile"
-        >
-          PROFILE
-          <AccountCircleIcon />
-        </Button>
+        {isLogin ? (
+          <Button
+            sx={{
+              height: 70,
+              width: 200,
+              fontSize: 20,
+              fontWeight: "bolder",
+            }}
+            component={Link}
+            to="/profile"
+          >
+            PROFILE
+            <AccountCircleIcon />
+          </Button>
+        ) : (
+          <Button
+            sx={{
+              height: 70,
+              width: 200,
+              fontSize: 20,
+              fontWeight: "bolder",
+            }}
+            onClick={() => {
+              alert("로그인 해주세요");
+            }}
+          >
+            PROFILE
+            <AccountCircleIcon />
+          </Button>
+        )}
 
         <Button
           id="demo-positioned-button"
