@@ -13,11 +13,11 @@ export default function Header({
   isLogin,
   handleLogOut,
   connectMetaMask,
-  connectKaikas
+  connectKaikas,
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  
+
   const [searchName, setSearchName] = useState("");
   const history = useHistory();
 
@@ -30,10 +30,10 @@ export default function Header({
   };
 
   const handleEnterSearch = (event) => {
-    if(event.key === 'Enter'){
+    if (event.key === "Enter") {
       history.push(`/search/${searchName}`);
     }
-  }
+  };
 
   return (
     <Stack
@@ -63,10 +63,7 @@ export default function Header({
           to="/"
         >
           <Stack sx={{ width: 50 }}>
-            <img
-              src="/Logo(beluga).png"
-              alt="logo"
-            />
+            <img src="/Logo(beluga).png" alt="logo" />
           </Stack>
           <Stack
             sx={{
@@ -93,7 +90,10 @@ export default function Header({
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon sx={{cursor: "pointer"}} onClick={() => history.push(`/search/${searchName}`)} />
+                  <SearchIcon
+                    sx={{ cursor: "pointer" }}
+                    onClick={() => history.push(`/search/${searchName}`)}
+                  />
                 </InputAdornment>
               ),
             }}
@@ -187,6 +187,7 @@ export default function Header({
               onClick={() => {
                 handleLogOut();
                 handleClose();
+                history.push("/");
               }}
             >
               Logout
