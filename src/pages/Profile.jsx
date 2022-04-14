@@ -5,17 +5,17 @@ import SaveAsOutlinedIcon from "@mui/icons-material/SaveAsOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import HistoryIcon from "@mui/icons-material/History";
-import UserNFTList from "./NFTList";
+import UserNFTList from "./UserNFTList";
 import Sidebar from "./component/Sidebar";
 
 export default function Profile({ isLogin, account, web3, caver }) {
   return (
     <>
-      <Stack sx={{ height: "100vh", width: "100%" }}>
+      <Stack sx={{ height: "150vh", width: "100%" }}>
         <Stack
           alignItems="center"
           justifyContent="center"
-          sx={{ height: "30%" }}
+          sx={{ height: "15%" }}
         >
           <Stack
             sx={{
