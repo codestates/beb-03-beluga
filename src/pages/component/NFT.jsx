@@ -8,6 +8,7 @@ import fetchMetaData from "../../fetchMetaData/fetchMetaData";
 
 
 const NFT = ({ web3, account }) => {
+
     const param = useParams().id;
     const [data, setData] = useState({});
     const [onModalImg, setOnModalImg] = useState(false);
@@ -31,13 +32,24 @@ const NFT = ({ web3, account }) => {
                 .then((el) => el.json())
                 .then(ele => setData({ ...ele, tokenId: param, tokenOwner }));
         }
-        fetchData();
+        if(web3){
+            // web3 객체가 있을 때만
+            fetchData();
+        }
       }, [web3, param]);
 
     const handleSend = async (tokenId) => {
 
-        if(account !== data.tokenOwner.toLowerCase()){
+        if(account === ""){
+            alert("이 서비스는 로그인이 필요합니다!");   
+            return;
+        } 
+        else if(account !== data.tokenOwner.toLowerCase()){
             alert("당신은 이 NFT의 주인이 아닙니다!");
+            return;
+        }
+        else if(data.tokenOwner === to) {
+            alert("이미 이 계정이 해당 NFT를 소유하고 있습니다.");
             return;
         }
 
@@ -59,17 +71,11 @@ const NFT = ({ web3, account }) => {
                 setTo("");
             });
         } catch {
-            if(account === ""){
-                alert("이 서비스는 로그인이 필요합니다!");   
-            } else if(account !== data.tokenOwner.toLowerCase()){
-                alert("당신은 이 NFT의 주인이 아닙니다!");
-            } else {
-                alert("주소를 잘못 입력하신 게 아닐까요?");
-            }
+            alert("오류가 발생했습니다. 주소를 잘못 입력하신 게 아닐까요?");
         }
       };
 
-    return (data.name === undefined ?  <Loading/> :  
+    return (data.name === undefined || !web3 ?  <Loading/> :  
     <Stack>
         {onModalImg ? 
             <img src={data.image} alt={data.name} onClick={() => setOnModalImg(false)} 

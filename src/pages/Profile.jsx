@@ -5,7 +5,7 @@ import SaveAsOutlinedIcon from "@mui/icons-material/SaveAsOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import HistoryIcon from "@mui/icons-material/History";
-import UserNFTList from "./NFTList";
+import UserNFTList from "./UserNFTList";
 import Sidebar from "./component/Sidebar";
 
 export default function Profile({ isLogin, account, web3, caver }) {

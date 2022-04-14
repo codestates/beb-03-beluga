@@ -6,7 +6,7 @@ import { erc721Abi, erc721addr } from "../erc721/erc721";
 import fetchMetaData from "../fetchMetaData/fetchMetaData";
 import Loading from "./component/Loading";
 
-const NFTList = ({ account = null, web3, caver }) => {
+const UserNFTList = ({ account = null, web3, caver }) => {
   const [lastPage, setLastPage] = useState(1);
   const [page, setPage] = useState(1);
   const [nftData, setNftData] = useState([]);
@@ -121,4 +121,4 @@ const NFTList = ({ account = null, web3, caver }) => {
   );
 };
 
-export default NFTList;
+export default UserNFTList;

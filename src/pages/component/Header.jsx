@@ -4,7 +4,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -13,10 +13,13 @@ export default function Header({
   isLogin,
   handleLogOut,
   connectMetaMask,
-  connectKaikas,
+  connectKaikas
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  
+  const [searchName, setSearchName] = useState("");
+  const history = useHistory();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -25,6 +28,12 @@ export default function Header({
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleEnterSearch = (event) => {
+    if(event.key === 'Enter'){
+      history.push(`/search/${searchName}`);
+    }
+  }
 
   return (
     <Stack
@@ -55,8 +64,8 @@ export default function Header({
         >
           <Stack sx={{ width: 50 }}>
             <img
-              src="/Logo(beluga).png
-        "
+              src="/Logo(beluga).png"
+              alt="logo"
             />
           </Stack>
           <Stack
@@ -84,11 +93,13 @@ export default function Header({
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon />
+                  <SearchIcon sx={{cursor: "pointer"}} onClick={() => history.push(`/search/${searchName}`)} />
                 </InputAdornment>
               ),
             }}
             variant="standard"
+            onChange={(e) => setSearchName(e.target.value)}
+            onKeyDown={(e) => handleEnterSearch(e)}
           />
         </Stack>
       </Stack>
@@ -150,9 +161,9 @@ export default function Header({
         >
           <Stack sx={{ width: 50 }}>
             {isLogin ? (
-              <img src="/beluga(login).png" />
+              <img src="/beluga(login).png" alt="login logo" />
             ) : (
-              <img src="/beluga(notlogin).png" />
+              <img src="/beluga(notlogin).png" alt="logout logo" />
             )}
           </Stack>
         </Button>
