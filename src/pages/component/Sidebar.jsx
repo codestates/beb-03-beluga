@@ -1,14 +1,13 @@
-import { Stack } from "@mui/material";
+import { Stack, Box } from "@mui/material";
 import FilterListIcon from '@mui/icons-material/FilterList';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ListItemIcon } from '@mui/material';
-
 
 export default function Sidebar() {
   return (
     <Stack 
     sx={{ 
-      border: 1, 
+      border: 0, 
       height: "100%", 
       borderColor:'grey',
     }}>
@@ -16,14 +15,35 @@ export default function Sidebar() {
         direction="row"
         alignItems="center"
         justifyContent="space-around"
+        borderRadius="5%"
         sx={{ border: 1, height: "14.29%" }}>
        
         <FilterListIcon/>
-        Filter
+        <Box
+                sx={{
+                  textAlign: "center",
+                  fontSize: 17,
+                  fontWeight: "bolder",
+                  height: "30%",
+                  width: "100%",
+                  
+                }}
+              >
+                Filter
+        </Box>
         <ArrowBackIcon/>
       </Stack>
       <Stack sx={{ border: 1, height:  "14.29%", alignItems:"left" }}>
-        Status
+      <Box
+                sx={{
+                  fontSize: 17,
+                  fontWeight: "bolder",
+                  height: "20%",
+                  width: "100%",
+                }}
+              >
+                Status
+        </Box>
         <ListItemIcon/>
       </Stack>
       <Stack sx={{ border: 1, height:  "14.29%" }}>
@@ -44,3 +64,4 @@ export default function Sidebar() {
     </Stack>
   );
 }
+
