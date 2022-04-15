@@ -7,8 +7,22 @@ import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import LoyaltyIcon from "@mui/icons-material/Loyalty";
 import AppsIcon from "@mui/icons-material/Apps";
 import ImageIcon from "@mui/icons-material/Image";
+import NFTListShow from "./component/NFTListShow";
 
 export default function Main() {
+  let data = {
+    name: "nft",
+    description: "test nft",
+    image: "https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E",
+    attributes: [
+      {
+        external_link: "externalLink",
+        blockchain: "etherium",
+        token_type: "erc721",
+      },
+    ],
+  };
+
   return (
     <Stack
       sx={{
@@ -88,62 +102,23 @@ export default function Main() {
               cursor: "pointer",
               boxShadow: "1px 1px 1px 1px gray",
               "&:hover": {
-                boxShadow: "3px 3px 3px 3px gray",
-                transform: "translate(-2px, -2px, -2px, -2px)",
+                boxShadow: "2px 2px 2px 2px gray",
+                transform: "translate(-1px, -1px)",
               },
             }}
           >
-            <Stack
-              sx={{
-                border: 1,
-                height: "85%",
-                position: "relative",
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "black",
+                width: "100%",
+                fontSize: 25,
+                textAlign: "center",
               }}
+              to="/list/35"
             >
-              <img
-                style={{
-                  objectFit: "cover",
-                  width: "100%",
-                  height: "100%",
-                  position: "absolute",
-                }}
-                src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"
-              />
-            </Stack>
-            <Stack direction="row" sx={{ height: "15%", width: "100%" }}>
-              <Stack
-                sx={{
-                  height: "100%",
-                  width: 80,
-                  position: "relative",
-                  ml: 3,
-                  borderRadius: 50,
-                }}
-              >
-                <img
-                  style={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "100%",
-                    position: "absolute",
-                  }}
-                  src="/beluga_login_removebg.png"
-                />
-              </Stack>
-              <Stack
-                sx={{
-                  ml: 2,
-                  height: "100%",
-                  width: "70%",
-                  justifyContent: "center",
-                  fontSize: 25,
-                }}
-              >
-                NFT
-                <br />
-                team Beluga
-              </Stack>
-            </Stack>
+              <NFTListShow data={data} imgHeightSetting={450} />
+            </Link>
           </Stack>
         </Stack>
       </Stack>
