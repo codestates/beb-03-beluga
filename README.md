@@ -21,6 +21,13 @@
 
 ## 🐋 기술 스택
 
+- react
+- javascript
+- solidity
+
+## 🐋 사용 라이브러리
+
+- OpenZeppelin
 - react 17.0.2
 - react-router-dom5.3.0
 - mui/material
