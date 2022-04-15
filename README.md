@@ -49,6 +49,9 @@
 
 🐙 블록체인 기술을 이용하여 투명하고 안전하게 서비스를 이용할 수 있습니다.
 
+## 🐋 주소
+- https://beb-03-beluga.vercel.app/
+
 ## 🐋 BelugaSea를 만든 사람들
 
 - https://github.com/citron03
