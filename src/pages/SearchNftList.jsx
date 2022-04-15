@@ -25,7 +25,8 @@ const SearchNFTList = ({ web3, caver }) => {
         // 검색한 값으로 필터링한다.
         let arr = [];
         for (let i = 1; i <= totalSupply; i++) {
-          arr.push(i);
+        // arr,push(i);
+          arr.push(totalSupply - i + 1);
         }
         for (let tokenId of arr) {
           let tokenURI = await tokenContract.methods.tokenURI(tokenId).call();
