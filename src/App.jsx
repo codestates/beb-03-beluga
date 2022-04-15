@@ -70,7 +70,8 @@ function App() {
         <>
           <Stack
             sx={{
-              minHeight: "100vh",
+              height: "auto",
+              minHeight: "120vh",
               width: "100%",
               position: "relative",
             }}

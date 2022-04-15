@@ -8,6 +8,8 @@ import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import ExploreIcon from "@mui/icons-material/Explore";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 export default function Header({
   isLogin,
@@ -38,83 +40,94 @@ export default function Header({
   return (
     <Stack
       direction="row"
-      justifyContent="space-around"
+      justifyContent="space-between"
       sx={{
-        flexWrap: "wrap",
-        height: "auto",
-        marginTop: 3,
-        marginLeft: 2.5,
-        marginRight: 2.5,
+        height: 70,
+        background: "white",
+        mt: 1,
         paddingBottom: 1,
-        borderBottom: 3.5,
-        borderColor: "gray",
+        boxShadow: "0 5px 5px -5px gray",
       }}
     >
-      <Stack
-        direction="row"
-        alignItems="center"
-        sx={{ flexWrap: "wrap", flexGrow: 0.6, marginLeft: 2 }}
+      <Button
+        justifyContent="space-around"
+        sx={{ color: "black", ml: 3 }}
+        component={Link}
+        to="/"
       >
-        {/* <Link to="/" style={{ textDecoration: "none" }}> */}
-        <Button
-          justifyContent="space-around"
-          sx={{ color: "black" }}
-          component={Link}
-          to="/"
-        >
-          <Stack sx={{ width: 50 }}>
-            <img src="/Logo(beluga).png" alt="logo" />
-          </Stack>
-          <Stack
-            sx={{
-              flexWrap: "wrap",
-              fontSize: 25,
-              fontWeight: "bolder",
-              marginLeft: 2,
-            }}
-          >
-            BelugaSea
-          </Stack>
-        </Button>
-        {/* </Link> */}
-      </Stack>
-      <Stack
-        alignItems="center"
-        justifyContent="center"
-        direction="row"
-        sx={{ flexGrow: 6 }}
-      >
-        <Stack sx={{ height: "auto", maxWidth: 700, flexGrow: 0.8 }}>
-          <TextField
-            placeholder="search value"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon
-                    sx={{ cursor: "pointer" }}
-                    onClick={() => history.push(`/search/${searchName}`)}
-                  />
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-            onChange={(e) => setSearchName(e.target.value)}
-            onKeyDown={(e) => handleEnterSearch(e)}
-          />
+        <Stack sx={{ width: 40 }}>
+          <img src="/Logo(beluga).png" alt="logo" />
         </Stack>
+        <Stack
+          sx={{
+            width: 120,
+            fontSize: 20,
+            fontWeight: "bolder",
+            marginLeft: 2,
+          }}
+        >
+          BelugaSea
+        </Stack>
+      </Button>
+
+      <Stack
+        sx={{
+          height: "100%",
+          maxWidth: 700,
+          width: "50%",
+          justifyContent: "center",
+          ml: 4,
+          mr: 4,
+        }}
+      >
+        <TextField
+          placeholder="search value"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => history.push(`/search/${searchName}`)}
+                />
+              </InputAdornment>
+            ),
+          }}
+          variant="standard"
+          onChange={(e) => setSearchName(e.target.value)}
+          onKeyDown={(e) => handleEnterSearch(e)}
+        />
       </Stack>
+
       <Stack
         direction="row"
-        justifyContent="end"
-        sx={{ flexGrow: 0.6, flexWrap: "wrap" }}
+        sx={{
+          height: "100%",
+          width: 500,
+          justifyContent: "space-around",
+        }}
       >
+        <Button
+          to="/list"
+          sx={{
+            height: 70,
+            width: 100,
+            fontSize: 15,
+            fontWeight: "bolder",
+            color: "#666666 ",
+          }}
+          component={Link}
+        >
+          EXPLORE
+          <ExploreIcon />
+        </Button>
         <Button
           to="/create"
           sx={{
             height: 70,
-            width: 200,
-            fontSize: 20,
+            width: 100,
+            fontSize: 15,
             fontWeight: "bolder",
+            color: "#666666 ",
           }}
           component={Link}
         >
@@ -125,9 +138,10 @@ export default function Header({
           <Button
             sx={{
               height: 70,
-              width: 200,
-              fontSize: 20,
+              width: 100,
+              fontSize: 15,
               fontWeight: "bolder",
+              color: "#666666 ",
             }}
             component={Link}
             to="/profile"
@@ -139,9 +153,10 @@ export default function Header({
           <Button
             sx={{
               height: 70,
-              width: 200,
-              fontSize: 20,
+              width: 100,
+              fontSize: 15,
               fontWeight: "bolder",
+              color: "#666666",
             }}
             onClick={() => {
               alert("로그인 해주세요");
@@ -159,13 +174,11 @@ export default function Header({
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
-          <Stack sx={{ width: 50 }}>
-            {isLogin ? (
-              <img src="/beluga(login).png" alt="login logo" />
-            ) : (
-              <img src="/beluga(notlogin).png" alt="logout logo" />
-            )}
-          </Stack>
+          {isLogin ? (
+            <AccountBoxIcon sx={{ fontSize: 40, color: "005666" }} />
+          ) : (
+            <AccountBoxIcon sx={{ fontSize: 40, color: "gray" }} />
+          )}
         </Button>
         {isLogin ? (
           <Menu
