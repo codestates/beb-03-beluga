@@ -1,4 +1,4 @@
-import { Stack, Pagination } from "@mui/material";
+import { Stack, Pagination, Radio, RadioGroup, FormControlLabel } from "@mui/material";
 import NFTListShow from "./component/NFTListShow";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -12,6 +12,7 @@ const AllNftList = ({ web3, caver }) => {
   const [nftData, setNftData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalTokenNum, setTotalTokenNum] = useState(0);
+  const [order, setOrder] = useState("New");
 
   useEffect(() => {
     async function setPagination() {
@@ -40,8 +41,11 @@ const AllNftList = ({ web3, caver }) => {
       let lastNum = page === lastPage ? totalTokenNum : 10 * (page - 1) + 10;
 
       for (let i = 10 * (page - 1); i < lastNum; i++) {
-        // arr,push(i + 1);
-        arr.push(totalTokenNum - i);
+        if(order === "Old"){
+          arr.push(i + 1);
+        }else{
+          arr.push(totalTokenNum - i);
+        }
       }
       
       for (let tokenId of arr) {
@@ -63,7 +67,7 @@ const AllNftList = ({ web3, caver }) => {
         fetchData();
       }
     }
-  }, [web3, page, lastPage, totalTokenNum]);
+  }, [web3, page, lastPage, totalTokenNum, order]);
 
   const handlePage = (event) => {
     const nowPageInt = parseInt(event.target.outerText);
@@ -74,6 +78,19 @@ const AllNftList = ({ web3, caver }) => {
     <Loading />
   ) : (
     <Stack width="100vw" textAlign="center">
+      <Stack alignItems="flex-start"sx={{marginLeft: 25}}>
+        <RadioGroup
+          row
+          defaultValue="New"
+          aria-labelledby="created-time-controlled-radio-buttons-group"
+          name="controlled-radio-buttons-group"
+          value={order}
+          onChange={(e) => setOrder(e.target.value)}
+        >
+          <FormControlLabel value="New" control={<Radio />} label="New" />
+          <FormControlLabel value="Old" control={<Radio />} label="Old" />
+        </RadioGroup>        
+      </Stack>      
       <Stack
         display="grid"
         sx={{
