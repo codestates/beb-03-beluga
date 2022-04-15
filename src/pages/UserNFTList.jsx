@@ -28,7 +28,8 @@ const UserNFTList = ({ account = null, web3, caver }) => {
           // 주소값으로 필터링
           let arr = [];
           for (let i = 1; i <= totalSupply; i++) {
-            arr.push(i);
+            // arr,push(i);
+              arr.push(totalSupply - i + 1);
           }
           for (let tokenId of arr) {
             let tokenOwner = await tokenContract.methods

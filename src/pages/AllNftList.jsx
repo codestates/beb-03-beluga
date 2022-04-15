@@ -38,10 +38,12 @@ const AllNftList = ({ web3, caver }) => {
       let arr = [];
 
       let lastNum = page === lastPage ? totalTokenNum : 10 * (page - 1) + 10;
-      for (let i = 10 * (page - 1); i < lastNum; i++) {
-        arr.push(i + 1);
-      }
 
+      for (let i = 10 * (page - 1); i < lastNum; i++) {
+        // arr,push(i + 1);
+        arr.push(totalTokenNum - i);
+      }
+      
       for (let tokenId of arr) {
         let tokenURI = await tokenContract.methods.tokenURI(tokenId).call();
         const tokenMetaData = await fetchMetaData(tokenURI);
