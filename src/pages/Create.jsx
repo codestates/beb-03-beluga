@@ -7,6 +7,7 @@ import {
   MenuItem,
   Button,
   Alert,
+  Input,
 } from "@mui/material";
 import { useState } from "react";
 import InputForm from "./component/InputForm";
@@ -164,7 +165,22 @@ function Create({ account, web3, caver }) {
       justifyContent="center"
       component="form"
     >
-      <img src={imgSrc} alt="preview-img" style={{ height: 200, width: 200 }} />
+      <label>
+        <FormControl>
+          <img
+            src={imgSrc}
+            alt="preview-img"
+            style={{ height: 200, width: 200 }}
+          />
+          <Input
+            type="file"
+            sx={{ display: "none" }}
+            onChange={(e) => {
+              handleImagePreview(e.target);
+            }}
+          ></Input>
+        </FormControl>
+      </label>
 
       <Stack
         sx={{
