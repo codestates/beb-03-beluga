@@ -57,8 +57,15 @@ export default function Profile({ isLogin, account, web3, caver }) {
               <Box
                 title={account}
                 onClick={() => {
-                  navigator.clipboard.writeText(account);
-                  alert("주소가 복사되었습니다.");
+                  navigator.clipboard.writeText(account).then(
+                    () => {
+                      alert("주소가 복사되었습니다.");
+                    },
+                    () => {
+                      alert("주소 복사에 실패했습니다.");
+                    }
+                  );
+                  // alert("주소가 복사되었습니다.");
                 }}
                 sx={{
                   height: "50%",
