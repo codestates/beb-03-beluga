@@ -45,11 +45,11 @@ export default function Profile({ isLogin, account, web3, caver }) {
               <Box
                 sx={{
                   textAlign: "center",
-                  fontSize: 29,
+                  fontSize: 22,
                   fontWeight: "bolder",
                   height: "50%",
                   width: "100%",
-                  mt: -2,
+                  mt: -1,
                 }}
               >
                 Unnamed
@@ -57,8 +57,15 @@ export default function Profile({ isLogin, account, web3, caver }) {
               <Box
                 title={account}
                 onClick={() => {
-                  navigator.clipboard.writeText(account);
-                  alert("주소가 복사되었습니다.");
+                  navigator.clipboard.writeText(account).then(
+                    () => {
+                      alert("주소가 복사되었습니다.");
+                    },
+                    () => {
+                      alert("주소 복사에 실패했습니다.");
+                    }
+                  );
+                  // alert("주소가 복사되었습니다.");
                 }}
                 sx={{
                   height: "50%",
@@ -163,8 +170,10 @@ export default function Profile({ isLogin, account, web3, caver }) {
         >
           <Stack
             sx={{
+              border: 0,
+              boxShadow: "0 2px 3px 3px gray",
               height: "100%",
-              width: "20%",
+              width: 150,
             }}
           >
             <Sidebar />
