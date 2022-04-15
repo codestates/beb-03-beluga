@@ -1,5 +1,5 @@
 import NFTListShow from "./component/NFTListShow";
-import { Stack, Pagination } from "@mui/material";
+import { Stack, Pagination, Radio, RadioGroup, FormControlLabel } from "@mui/material";
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { erc721Abi, erc721addr } from "../erc721/erc721";
@@ -13,6 +13,7 @@ const SearchNFTList = ({ web3, caver }) => {
   const [nftData, setNftData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [pageNftData, setPageNftData] = useState([]);
+  const [order, setOrder] = useState("New");
 
   useEffect(() => {
     async function fetchData() {
@@ -25,8 +26,11 @@ const SearchNFTList = ({ web3, caver }) => {
         // 검색한 값으로 필터링한다.
         let arr = [];
         for (let i = 1; i <= totalSupply; i++) {
-        // arr,push(i);
-          arr.push(totalSupply - i + 1);
+          if(order === "Old"){
+            arr.push(i);
+          }else{
+            arr.push(totalSupply - i + 1);
+          }
         }
         for (let tokenId of arr) {
           let tokenURI = await tokenContract.methods.tokenURI(tokenId).call();
@@ -50,7 +54,7 @@ const SearchNFTList = ({ web3, caver }) => {
       // web3가 있을 때만
       fetchData();
     }
-  }, [web3, search]);
+  }, [web3, search, order]);
 
   useEffect(() => {
     if (page === lastPage) {
@@ -69,6 +73,19 @@ const SearchNFTList = ({ web3, caver }) => {
     <Loading />
   ) : (
     <Stack width="80vw" textAlign="center" sx={{ mt: 5, mb: 5 }}>
+      <Stack alignItems="flex-start"sx={{marginLeft: 25}}>
+        <RadioGroup
+          row
+          defaultValue="New"
+          aria-labelledby="created-time-controlled-radio-buttons-group"
+          name="controlled-radio-buttons-group"
+          value={order}
+          onChange={(e) => setOrder(e.target.value)}
+        >
+          <FormControlLabel value="New" control={<Radio />} label="New" />
+          <FormControlLabel value="Old" control={<Radio />} label="Old" />
+        </RadioGroup>        
+      </Stack>            
       <Stack
         display="grid"
         sx={{
