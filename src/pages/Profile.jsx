@@ -13,12 +13,11 @@ import Ready from "./component/Ready";
 export default function Profile({ isLogin, account, web3, caver }) {
   return (
     <>
-      <Stack sx={{ height: "110vh", width: "100%", mb: 10 }}>
+      <Stack sx={{ height: "120vh", width: "100%", mb: 10 }}>
         <Stack
           alignItems="center"
           justifyContent="center"
           sx={{
-            height: "30%",
             background: "linear-gradient(#bdc3c8 50%, #fff 50%)",
           }}
         >
@@ -46,10 +45,11 @@ export default function Profile({ isLogin, account, web3, caver }) {
               <Box
                 sx={{
                   textAlign: "center",
-                  fontSize: 29,
+                  fontSize: 22,
                   fontWeight: "bolder",
                   height: "50%",
                   width: "100%",
+                  mt:-1,
                 }}
               >
                 Unnamed
@@ -163,8 +163,10 @@ export default function Profile({ isLogin, account, web3, caver }) {
         >
           <Stack
             sx={{
+              border:0,
+              boxShadow: "0 2px 3px 3px gray",
               height: "100%",
-              width: "20%",
+              width: 150,
             }}
           >
             <Sidebar />
