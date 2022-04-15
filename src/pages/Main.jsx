@@ -112,10 +112,12 @@ export default function Main() {
                 textDecoration: "none",
                 color: "black",
                 width: "100%",
+                fontSize: 25,
+                textAlign: "center",
               }}
               to="/list/35"
             >
-              <NFTListShow data={data} />
+              <NFTListShow data={data} imgHeightSetting={450} />
             </Link>
           </Stack>
         </Stack>
